@@ -23,6 +23,10 @@ namespace NBSP.Models
         [Display(Name = "Password")] 
         [StringLength(255)] 
         public string Pwd { get; set; }
-     
+
+        [Display(Name = "Confirm Password")]
+        [Compare("Pwd", ErrorMessage = "Please ensure both password are the same")]
+        public string PasswordConfirm { get; set; }
+
     }
 }

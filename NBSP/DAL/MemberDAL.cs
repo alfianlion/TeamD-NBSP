@@ -42,7 +42,7 @@ namespace NBSP.DAL
             cmd.Parameters.AddWithValue("@name", member.Name);
             cmd.Parameters.AddWithValue("@email", member.EmailAddr);
             cmd.Parameters.AddWithValue("@contact", member.PhoneNo);
-            cmd.Parameters.AddWithValue("@email", member.Pwd);
+            cmd.Parameters.AddWithValue("@pwd", member.Pwd);
             //A connection to database must be opened before any operations made.
             conn.Open();
             //ExecuteScalar is used to retrieve the auto-generated
