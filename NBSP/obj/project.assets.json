@@ -105,11 +105,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\TeamD-NBSP\\NBSP\\NBSP.csproj",
+      "projectUniqueName": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\NBSP\\NBSP.csproj",
       "projectName": "NBSP",
-      "projectPath": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\TeamD-NBSP\\NBSP\\NBSP.csproj",
+      "projectPath": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\NBSP\\NBSP.csproj",
       "packagesPath": "C:\\Users\\simyu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\TeamD-NBSP\\NBSP\\obj\\",
+      "outputPath": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\NBSP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
