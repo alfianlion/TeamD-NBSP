@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NBSP.DAL
 {
-    public class Member
+    public class VolunteerDAL
     {
     }
 }
