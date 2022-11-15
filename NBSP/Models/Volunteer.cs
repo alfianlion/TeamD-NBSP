@@ -37,30 +37,30 @@ namespace NBSP.Models
 
         [Display(Name = "Monday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)]
-        public string? Mon { get; set; }
+        public bool? Mon { get; set; }
 
         [Display(Name = "Tuesday Avaliability")]
         [RegularExpression(@"[0-1]")] [StringLength(1)]
-        public string? Tue { get; set; }
+        public bool? Tue { get; set; }
 
         [Display(Name = "Wednesday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
-        public string? Wed { get; set; }
+        public bool? Wed { get; set; }
 
         [Display(Name = "Thursday Avaliability")]
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
-        public string? Thur { get; set; }
+        public bool? Thur { get; set; }
 
         [Display(Name = "Friday Avaliability")]
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
-        public string? Fri { get; set; }
+        public bool? Fri { get; set; }
 
         [Display(Name = "Saturday Avaliability")]
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
-        public string? Sat { get; set; }
+        public bool? Sat { get; set; }
 
         [Display(Name = "Sunday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
-        public string? Sun { get; set; }
+        public bool? Sun { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using NBSP.Models;
 
 namespace NBSP.DAL
 {
@@ -26,75 +27,105 @@ namespace NBSP.DAL
             //Connection String read.
             conn = new SqlConnection(strConn);
         }
-//        public List<Staff> GetAllStaff()
-//        {
-//            //Create a SqlCommand object from connection object
-//            SqlCommand cmd = conn.CreateCommand();
-//            //Specify the SELECT SQL statement 
-//            cmd.CommandText = @"SELECT * FROM Staff ORDER BY StaffID";
-//            //Open a database connection
-//            conn.Open();
-//            //Execute the SELECT SQL through a DataReader
-//            SqlDataReader reader = cmd.ExecuteReader();
-//            //Read all records until the end, save data into a staff list
-//            List<Staff> staffList = new List<Staff>();
-//            while (reader.Read())
-//            {
-//                staffList.Add(
-//                new Staff
-//                {
-//                    StaffId = reader.GetInt32(0), //0: 1st column
-//                    Name = reader.GetString(1), //1: 2nd column
-//                                                //Get the first character of a string
-//                    Gender = reader.GetString(2)[0], //2: 3rd column
-//                    DOB = reader.GetDateTime(3), //3: 4th column
-//                    Salary = reader.GetDecimal(5), //5: 6th column
-//                    Nationality = reader.GetString(6), //6: 7th column
-//                    Email = reader.GetString(9), //9: 10th column
-//                    IsFullTime = reader.GetBoolean(11), //11: 12th column
-//                                                        //7 - 8th column, assign Branch Id, 
-//                                                        //if null value in db, assign integer null value
-//                    BranchNo = !reader.IsDBNull(7) ?
-//                reader.GetInt32(7) : (int?)null,
-//                }
-//                );
-//            }
-//            //Close DataReader
-//            reader.Close();
-//            //Close the database connection
-//            conn.Close();
-//            return staffList;
-//        }
+        public List<Volunteer> GetAllVolunteer()
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify the SELECT SQL statement 
+            cmd.CommandText = @"SELECT * FROM Volunteer ORDER BY VolunteerID";
+            //Open a database connection
+            conn.Open();
+            //Execute the SELECT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+            //Read all records until the end, save data into a staff list
+            List<Volunteer> vList = new List<Volunteer>();
+            while (reader.Read())
+            {
+                vList.Add(
+                new Volunteer
+                {
+                    VolunteerID = reader.GetInt32(0), 
+                    Name = reader.GetString(1), 
+                    EmailAddr = reader.GetString(2), 
+                    ContactNo = reader.GetInt32(3), 
+                    Pwd = reader.GetString(4), 
+                    DOB = reader.GetDateTime(5), 
+                    Gender = reader.GetChar(6), 
+                    Mon = !reader.IsDBNull(7) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Tue = !reader.IsDBNull(8) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Wed = !reader.IsDBNull(9) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Thur = !reader.IsDBNull(10) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Fri = !reader.IsDBNull(11) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Sat = !reader.IsDBNull(12) ?
+                reader.GetBoolean(7) : (bool?)null,
+                    Sun = !reader.IsDBNull(13) ?
+                reader.GetBoolean(7) : (bool?)null,
+                }
+                );
+            }
+            //Close DataReader
+            reader.Close();
+            //Close the database connection
+            conn.Close();
+            return vList;
+        }
+        public bool LoginCheck(string loginId, string password)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Customer 
+            WHERE MemberID = @selectedMemberID AND MPassword = @mPassword";
+            //Define the parameter used in SQL statement, value for the
+            //parameter is retrieved from the method parameter “staffId”.
+            cmd.Parameters.AddWithValue("@selectedMemberID", loginId);
+            cmd.Parameters.AddWithValue("@mPassword", password);
 
-//        public int Add(Staff staff)
-//        {
-//            //Create a SqlCommand object from connection object
-//            SqlCommand cmd = conn.CreateCommand();
-//            //Specify an INSERT SQL statement which will
-//            //return the auto-generated StaffID after insertion
-//            cmd.CommandText = @"INSERT INTO Staff (Name, Gender, DOB, Salary, 
-// EmailAddr, Nationality, Status) 
-//OUTPUT INSERTED.StaffID 
-//VALUES(@name, @gender, @dob, @salary, 
-//@email, @country, @status)";
-//            //Define the parameters used in SQL statement, value for each parameter
-//            //is retrieved from respective class's property.
-//            cmd.Parameters.AddWithValue("@name", staff.Name);
-//            cmd.Parameters.AddWithValue("@gender", staff.Gender);
-//            cmd.Parameters.AddWithValue("@dob", staff.DOB);
-//            cmd.Parameters.AddWithValue("@salary", staff.Salary);
-//            cmd.Parameters.AddWithValue("@email", staff.Email);
-//            cmd.Parameters.AddWithValue("@country", staff.Nationality);
-//            cmd.Parameters.AddWithValue("@status", staff.IsFullTime);
-//            //A connection to database must be opened before any operations made.
-//            conn.Open();
-//            //ExecuteScalar is used to retrieve the auto-generated
-//            //StaffID after executing the INSERT SQL statement
-//            staff.StaffId = (int)cmd.ExecuteScalar();
-//            //A connection should be closed after operations.
-//            conn.Close();
-//            //Return id when no error occurs.
-//            return staff.StaffId;
-//        }
+            conn.Open();
+            //Execute SELCT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Close();
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return false;
+            }
+        }
+
+        public int Add(Volunteer volunteer)
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify an INSERT SQL statement which will
+            //return the auto-generated StaffID after insertion
+            cmd.CommandText = @"INSERT INTO Volunteer (Name, EmailAddr, ContactNo, Pwd) 
+        OUTPUT INSERTED.VolunteerID 
+        VALUES(@name, @email, @contact, @pwd)";
+            //Define the parameters used in SQL statement, value for each parameter
+            //is retrieved from respective class's property.
+            cmd.Parameters.AddWithValue("@name", volunteer.Name);
+            cmd.Parameters.AddWithValue("@email", volunteer.EmailAddr);
+            cmd.Parameters.AddWithValue("@contact", volunteer.ContactNo);
+            cmd.Parameters.AddWithValue("@pwd", volunteer.Pwd);
+            //A connection to database must be opened before any operations made.
+            conn.Open();
+            //ExecuteScalar is used to retrieve the auto-generated
+            //StaffID after executing the INSERT SQL statement
+            volunteer.VolunteerID = (int)cmd.ExecuteScalar();
+            //A connection should be closed after operations.
+            conn.Close();
+            //Return id when no error occurs.
+            return volunteer.VolunteerID;
+        }
     }
 }

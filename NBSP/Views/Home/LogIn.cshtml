@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Use Unicode character encoding - multi-language compatibity -->
+    <meta charset="utf-8">
+    <!-- Set the initial view zooming scale for mobile device -->
+    <meta name="viewport" content="width = device-width,
+ initial-scale = 1" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <title>ZZ Fashion</title>
+    <!-- Reference to customized styling for this website -->
+    <style>
+        #rcorners1 {
+            border-radius: 25px;
+            background: #0A87AE;
+            padding: 20px;
+            width: 750px;
+            height: 500px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        form {
+            margin-top: 120px;
+        }
+
+        #txtLoginID {
+            height: 25px;
+            border: 0px solid white;
+        }
+
+        #txtPassword {
+            height: 25px;
+            border: 0px solid white;
+        }
+
+        #heading {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #legendtxt {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="rcorners1" class="center">
+    <form method="post" action="~/Home/Login">
+        <p class="loginTitle">Log in</p><br />
+        <label for="txtLoginID">Username:</label>
+        <input type="text" name="txtLoginID"
+               id="txtLoginID" style="border-radius:20px;"
+               required /><br /><br />
+        <label for="txtPassword">Password:</label>
+        <input type="password" name="txtPassword"
+               id="txtPassword" style="border-radius: 20px;"
+               required /><br /><br />
+        <input type="submit" id="btnLogin"
+               class="myButton" value="Login" />
+        <br />
+        <span style="color:red;">@TempData["Message"]</span>
+    </form>
+</div>
+</body>
+</html>
