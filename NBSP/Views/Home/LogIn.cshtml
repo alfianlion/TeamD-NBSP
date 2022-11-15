@@ -54,22 +54,30 @@
     </style>
 </head>
 <body>
-<div id="rcorners1" class="center">
-    <form method="post" action="~/Home/Login">
-        <p class="loginTitle">Log in</p><br />
-        <label for="txtLoginID">Username:</label>
-        <input type="text" name="txtLoginID"
-               id="txtLoginID" style="border-radius:20px;"
-               required /><br /><br />
-        <label for="txtPassword">Password:</label>
-        <input type="password" name="txtPassword"
-               id="txtPassword" style="border-radius: 20px;"
-               required /><br /><br />
-        <input type="submit" id="btnLogin"
-               class="myButton" value="Login" />
-        <br />
-        <span style="color:red;">@TempData["Message"]</span>
-    </form>
-</div>
+    <div id="rcorners1" class="center">
+        <form method="post" action="~/Home/Login">
+            <p class="loginTitle">Log in</p><br />
+            <label for="txtLoginID">Username:</label>
+            <input type="text" name="txtLoginID"
+                   id="txtLoginID" style="border-radius:20px;"
+                   required /><br /><br />
+            <label for="txtPassword">Password:</label>
+            <input type="password" name="txtPassword"
+                   id="txtPassword" style="border-radius: 20px;"
+                   required /><br /><br />
+            <input type="submit" id="btnLogin"
+                   class="myButton" value="Login" />
+            <br />
+            <span style="color:red;">@TempData["Message"]</span>
+        </form>
+
+        <a href="~/Home/SignUp">
+            <button id="btnSignUp"
+                    class="myButton">
+                Register
+            </button>
+        </a>
+
+    </div>
 </body>
 </html>

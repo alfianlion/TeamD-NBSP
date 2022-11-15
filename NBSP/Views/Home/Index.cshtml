@@ -1,89 +1,12 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Use Unicode character encoding - multi-language compatibity -->
-    <meta charset="utf-8">
-    <!-- Set the initial view zooming scale for mobile device -->
-    <meta name="viewport" content="width = device-width,
- initial-scale = 1" />
-    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
-    <title>ZZ Fashion</title>
-    <!-- Reference to customized styling for this website -->
-    <style>
-        #rcorners1 {
-            border-radius: 25px;
-            background: #0A87AE;
-            padding: 20px;
-            width: 750px;
-            height: 500px;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            margin: auto;
-            margin-top: 50px;
-        }
-
-        form {
-            margin-top: 120px;
-        }
-
-        #txtLoginID {
-            height: 25px;
-            border: 0px solid white;
-        }
-
-        #txtPassword {
-            height: 25px;
-            border: 0px solid white;
-        }
-
-        #heading {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        #legendtxt {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 50px;
-        }
-    </style>
-</head>
-
-<nav class="navbar navbar-expand-md bg-light navbar-light">
-
-    <a class="navbar-brand" href="~/Home/MemberMain"
-       style="font-size:32px; font-weight:bold; color:#3399FF;">
-        ZZ Fashion <!--Replace with picture as homepage-->
-    </a>
-    <!-- Toggle/collapsible Button, also known as hamburger button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#memberNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Links in the navbar, displayed as drop-down list when collapsed -->
-    <div class="collapse navbar-collapse" id="memberNavbar">
-        <!-- Links that are aligned to the left,
-        mr-auto: right margin auto-adjusted -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="~/Home/Login">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/Home/Login">Volunteer</a>
-            </li>
-        </ul>
-        <!-- Links that are aligned to the right,
-            ml-auto: left margin auto-adjusted -->
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <!-- A link for logging out user -->
-                <a class="nav-link" href="~/Home/LogIn">LogIn  |   </a>
-                <a class="nav-link" href="~/Home/SignUp">Sign Up</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<div style="text-align:center; border: solid 1px black; width="100vw;"><img width="20%;" height="20%;" src="~/images/twodudes.png" width="350" alt="Icon Helping Hand" />
+    <p>
+        To provide a platform for volunteers to help Single Parents to ease their problems
+    </p>
+</div>
+<a style="color:black; text-decoration:none;" href="~/Home/LogIn"><div class="design-box" style="background-color: pink; width: 400px; height: 200px;"><span>Education<br />Information on Education Schemes</span></div></a>
+<a style="color:black; text-decoration:none;" href="~/Home/LogIn"><div class="design-box" style="background-color: lightgoldenrodyellow; width: 400px; height: 200px;"><span>Counselling<br />Need help? Talk to someone</span></div></a>
+<a style="color:black; text-decoration:none;" href="~/Home/LogIn"><div class="design-box" style="background-color: lightcoral; width: 400px; height: 200px;"><span>Employment<br />Skill Enhancement</span></div></a>
+<a style="color:black; text-decoration:none;" href="~/Home/LogIn"><div class="design-box" style="background-color: lightblue; width: 400px; height: 200px;"><span>Subsidies<br />Money Hacks</span></div></astyle="color:black;></a>

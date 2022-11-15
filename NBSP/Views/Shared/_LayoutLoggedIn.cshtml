@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,6 +20,9 @@
                     <ul class="navbar-nav flex-grow-1">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item" style="font-size: 25px;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile"><strong>Profile</strong></a>
+                            </li>
+                            <li class="nav-item" style="font-size: 25px;">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><strong>About</strong></a>
                             </li>
                             <li class="nav-item" style="font-size: 25px;">
@@ -29,7 +32,7 @@
     ml-auto: left margin auto-adjusted -->
                             <li class="nav-item">
                                 <!-- A link for logging out user -->
-                                <span style="position:absolute; top:0; right:0; padding:10px; color:black; text-decoration:none;"><a style="color:black;" href="~/Home/LogIn">Log In</a> | <a style="color:black;" href="~/Home/SignUp">Sign Up</a></span>
+                                <span style="position:absolute; top:0; right:0; padding:10px; color:black; text-decoration:none;"><a style="color:black;" href="~/Home/Index">Log out</a></span>
                             </li>
                         </ul>
                     </ul>

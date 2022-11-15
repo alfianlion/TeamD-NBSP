@@ -133,3 +133,6 @@ C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcor
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\SignUpVolunteer.cshtml.g.cs
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Member\Index.cshtml.g.cs
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Volunteer\Index.cshtml.g.cs
+C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\About.cshtml.g.cs
+C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
+C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLoggedIn.cshtml.g.cs
