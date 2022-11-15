@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "19lYrU5CG2rMuy9cGv8CpsxOsPm/FBDevHHCd3okMOWkYUvJ3H2+VxHlh0AxuCbBGw1SEwsJB2lEHOuj7tu/7g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\simyu\\OneDrive\\Desktop\\Assignments\\PFD\\Assignment\\TeamD-NBSP\\NBSP\\NBSP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\simyu\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512"
+  ],
+  "logs": []
+}
