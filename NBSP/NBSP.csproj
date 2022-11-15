@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Member\" />
-    <Folder Include="Models\Volunteer\" />
     <Folder Include="Views\Member\" />
     <Folder Include="Views\Volunteer\" />
   </ItemGroup>
