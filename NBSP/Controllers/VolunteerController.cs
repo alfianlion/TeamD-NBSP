@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NBSP.DAL;
+using NBSP.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace NBSP.Controllers
 {
     public class VolunteerController : Controller
     {
+        private VolunteerDAL volunteerContext = new VolunteerDAL();
         // GET: VolunteerController
         public ActionResult Index()
         {
@@ -24,7 +27,29 @@ namespace NBSP.Controllers
         // GET: VolunteerController/Create
         public ActionResult Create()
         {
-            return View();
+            ViewData["ShowResult"] = false;
+            Volunteer volunteer = new Volunteer();
+            return View(volunteer);
+        }
+
+        // POST: SalesController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Volunteer volunteer)
+        {
+            ViewData["ShowResult"] = true;
+            if (ModelState.IsValid)
+            {
+                ViewData["ResultMessage"] = "Volunteer Created";
+                volunteerContext.Add(volunteer);
+                ModelState.Clear();
+                return View("Create");
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Volunteer Already Exists";
+                return View();
+            }
         }
 
         // POST: VolunteerController/Create

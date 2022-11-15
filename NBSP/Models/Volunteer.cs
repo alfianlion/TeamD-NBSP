@@ -7,5 +7,6 @@ namespace NBSP.Models
 {
     public class Volunteer
     {
+
     }
 }
