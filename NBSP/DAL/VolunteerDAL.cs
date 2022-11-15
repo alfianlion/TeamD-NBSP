@@ -74,15 +74,15 @@ namespace NBSP.DAL
             conn.Close();
             return vList;
         }
-        public bool LoginCheck(string loginId, string password)
+        public bool LoginCheck(string LoginId, string password)
         {
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM Customer 
-            WHERE MemberID = @selectedMemberID AND MPassword = @mPassword";
+            cmd.CommandText = @"SELECT * FROM Volunteer 
+            WHERE Name = @selectedName AND Pwd = @Pwd";
             //Define the parameter used in SQL statement, value for the
             //parameter is retrieved from the method parameter “staffId”.
-            cmd.Parameters.AddWithValue("@selectedMemberID", loginId);
-            cmd.Parameters.AddWithValue("@mPassword", password);
+            cmd.Parameters.AddWithValue("@selectedName", LoginId);
+            cmd.Parameters.AddWithValue("@Pwd", password);
 
             conn.Open();
             //Execute SELCT SQL through a DataReader

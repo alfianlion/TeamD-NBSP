@@ -54,5 +54,32 @@ namespace NBSP.DAL
             return member.MemberID;
         }
 
+        public bool MemberLoginCheck(string LoginId, string pwd)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Member 
+            WHERE Name = @selectedName AND Pwd = @pwd";
+            //Define the parameter used in SQL statement, value for the
+            //parameter is retrieved from the method parameter “staffId”.
+            cmd.Parameters.AddWithValue("@selectedName", LoginId);
+            cmd.Parameters.AddWithValue("@pwd", pwd);
+
+            conn.Open();
+            //Execute SELCT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Close();
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return false;
+            }
+        }
     }
 }

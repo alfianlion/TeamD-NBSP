@@ -131,3 +131,5 @@ C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcor
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\SignUp.cshtml.g.cs
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\SignUpMember.cshtml.g.cs
 C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Home\SignUpVolunteer.cshtml.g.cs
+C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Member\Index.cshtml.g.cs
+C:\Users\simyu\OneDrive\Desktop\Assignments\PFD\Assignment\NBSP\obj\Debug\netcoreapp3.1\Razor\Views\Volunteer\Index.cshtml.g.cs

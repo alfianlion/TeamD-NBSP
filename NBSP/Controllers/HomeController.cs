@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NBSP.DAL;
 using NBSP.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ namespace NBSP.Controllers
     {
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private SqlConnection conn;
 
         private readonly ILogger<HomeController> _logger;
 
@@ -30,6 +33,44 @@ namespace NBSP.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult LogIn(IFormCollection formData)
+        {
+
+            // Read inputs from textboxes
+            // Email address converted to lowercase
+            string loginID = formData["txtLoginID"];
+            string password = formData["txtPassword"].ToString();
+            bool memberLoginAuth = memberContext.MemberLoginCheck(loginID, password);
+            bool volunteerLoginAuth = volunteerContext.LoginCheck(loginID, password);
+
+            if (memberLoginAuth)
+            {
+                //// Store Login ID in session with the key “LoginID”
+                //HttpContext.Session.SetString("LoginID", loginID);
+                //// Store user role “SalesPersonnel” as a string in session with the key “Role”
+                //HttpContext.Session.SetString("Role", "Member");
+
+                // Redirect user to the "SalesPersonnelMain" view through an action
+                return RedirectToAction("Index", "Member");
+            }
+            if (volunteerLoginAuth){
+                //// Store Login ID in session with the key “LoginID”
+                //HttpContext.Session.SetString("LoginID", loginID);
+                //// Store user role “SalesPersonnel” as a string in session with the key “Role”
+                //HttpContext.Session.SetString("Role", "Member");
+
+                // Redirect user to the "SalesPersonnelMain" view through an action
+                return RedirectToAction("Index", "Volunteer");
+            }
+            else
+            {
+                TempData["Message"] = "You are wrong";
+                return RedirectToAction("LogIn");
+            }
+        }
+
         public IActionResult SignUp()
         {
             return View();
