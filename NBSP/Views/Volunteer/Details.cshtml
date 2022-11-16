@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutVolunteerMenu.cshtml";
+
  }
 
 <h4 class="PageTitle">View Volunteer Details</h4>
@@ -49,7 +51,7 @@
             <a asp-action="Edit" asp-controller="Volunteer"
                asp-route-id="@Model.VolunteerID">Edit</a> |
             <a asp-action="Index"
-               asp-controller="Member">Back to List</a>
+               asp-controller="Volunteer">Back to Home</a>
         </div>
     </div>
 </fieldset>
