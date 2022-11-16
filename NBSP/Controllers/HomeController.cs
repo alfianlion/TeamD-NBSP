@@ -43,7 +43,8 @@ namespace NBSP.Controllers
         }
         public IActionResult ViewVolunteer()
         {
-            return View();
+            List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
+            return View(volunteerList);
         }
 
         [HttpPost]
