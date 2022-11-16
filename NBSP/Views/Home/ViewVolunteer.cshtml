@@ -11,25 +11,84 @@
                     <th>Phone Number</th>
                     <th>D.O.B</th>
                     <th>Gender</th>
+                    <th>Avaliability</th>
                 </tr>
             </thead>
             <tbody>
+                @{string MonA = "";}
+                @{string TueA = "";}
+                @{string WedA = "";}
+                @{string ThurA = "";}
+                @{string FriA = "";}
+                @{string SatA = "";}
+                @{string SunA = "";}
+                @{DateTime nulldatetime = new DateTime(0001, 01, 01);}
+                @{ string nulldate = "Not Given";}
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <th>@item.Name</th>
-                    <th>@item.EmailAddr</th>
-                    <th>@item.ContactNo.ToString()</th>
-                    <th>@item.DOB.ToString()</th>
-                    <th>@item.Gender.ToString()</th>
-                </tr>
-                }
-            </tbody>
+                        MonA = "";
+                        TueA = "";
+                        WedA = "";
+                        ThurA = "";
+                        FriA = "";
+                        SatA = "";
+                        SunA = "";
+                        @if (item.Mon == true)
+                        {
+                            MonA = "Mon ";
+                        }
+                        @if (item.Tue == true)
+                        {
+                            TueA = "Tue ";
+                        }
+                        @if (item.Wed == true)
+                        {
+                            WedA = "Wed ";
+                        }
+                        @if (item.Thur == true)
+                        {
+                            ThurA = "Thur ";
+                        }
+                        @if (item.Fri == true)
+                        {
+                            FriA = "Fri ";
+                        }
+                        @if (item.Sat == true)
+                        {
+                            SatA = "Sat ";
+                        }
+                        @if (item.Sun == true)
+                        {
+                            SunA = "Sun ";
+                        }
+                        <tr>
+                            <th>@item.Name</th>
+                            <th>@item.EmailAddr</th>
+                            <th>@item.ContactNo.ToString()</th>
+                            <th>
+                                @if (item.DOB == nulldatetime)
+                                {
+                                    @nulldate
+                                }
+                                else
+                                {
+                                    @item.DOB.ToString()
+                                }
+
+                            </th>
+                            <th>@item.Gender.ToString()</th>
+                            <th>@MonA @TueA @WedA @ThurA @FriA @SatA @SunA</th>
+
+                        </tr>
+                    }
+                </tbody>
         </table>
     </div>
 }
-
 else
 {
     <span style="color:red">No volunteers found!</span>
 }
+
+
+

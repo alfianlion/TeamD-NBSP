@@ -11,13 +11,19 @@ namespace NBSP.Controllers
 {
     public class VolunteerController : Controller
     {
+        private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
-        // GET: VolunteerController
+        // GET: MemberController
         public ActionResult Index()
         {
-            return View();
+            List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
+            return View(volunteerList);
         }
-
+        public ActionResult ViewVolunteerList()
+        {
+            List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
+            return View(volunteerList);
+        }
         // GET: VolunteerController/Details/5
         public ActionResult Details(int id)
         {
