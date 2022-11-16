@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
     <style>
         #rcorners1 {
             border-radius: 25px;
-            background: #0A87AE;
+            background: #BEBED8;
             padding: 20px;
             width: 750px;
             height: 500px;
@@ -27,18 +27,41 @@
             margin-top: 50px;
         }
 
+        .myButton {
+            margin: 10px;
+            border-color: white;
+            width: 30%;
+        }
+
+        .loginTitle {
+            color: black;
+        }
+
         form {
-            margin-top: 120px;
+            margin-top: 9%;
+        }
+
+        .button-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
         }
 
         #txtLoginID {
             height: 25px;
             border: 0px solid white;
+            margin-left: auto;
+            color: black;
         }
 
         #txtPassword {
             height: 25px;
             border: 0px solid white;
+            color: black;
         }
 
         #heading {
@@ -56,27 +79,26 @@
 <body>
     <div id="rcorners1" class="center">
         <form method="post" action="~/Home/Login">
-            <p class="loginTitle">Log in</p><br />
-            <label for="txtLoginID">Username:</label>
+            <strong><p class="loginTitle">Log in</p><br /></strong>
+            <label for="txtLoginID" style="color: black">Username:</label>
             <input type="text" name="txtLoginID"
                    id="txtLoginID" style="border-radius:20px;"
                    required /><br /><br />
-            <label for="txtPassword">Password:</label>
+            <label for="txtPassword" style="color: black">Password:</label>
             <input type="password" name="txtPassword"
                    id="txtPassword" style="border-radius: 20px;"
                    required /><br /><br />
-            <input type="submit" id="btnLogin"
-                   class="myButton" value="Login" />
-            <br />
-            <span style="color:red;">@TempData["Message"]</span>
+            <div class="button-box">
+                <input type="submit" id="btnLogin"
+                       class="myButton" style="background-color: #41C1BA;" value="Login" />
+                <br />
+                <input type="button" id="btnSignUp"
+                       class="myButton" onclick="location.href='@Url.Action("SignUp","Home")'" style="background-color: #365B6D" value="Register">
+            </div>
         </form>
 
-        <a href="~/Home/SignUp">
-            <button id="btnSignUp"
-                    class="myButton">
-                Register
-            </button>
-        </a>
+        <br />
+        <span style="color:red;">@TempData["Message"]</span>
 
     </div>
 </body>

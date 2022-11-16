@@ -41,6 +41,10 @@ namespace NBSP.Controllers
         {
             return View();
         }
+        public IActionResult ViewVolunteer()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult LogIn(IFormCollection formData)

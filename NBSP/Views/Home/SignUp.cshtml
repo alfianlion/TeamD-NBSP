@@ -1,11 +1,48 @@
-﻿<div class="form signUpForm">
-    <form>
-        <h3>Member</h3>
-        <a href="~/Home/SignUpMember">Register</a>
-    </form>
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        h3 {
+            color: white;
+        }
 
-    <form>
-        <h3>Volunteer</h3>
-        <a href="~/Home/SignUpVolunteer">Register</a>
-    </form>
-</div>
+        input[type=button] {
+            width: 20vw;
+            border: white 1px solid;
+            border-radius: 10vw;
+            font-weight: bold;
+            margin-top: 10px;
+            height: 50px;
+        }
+
+        .signUpForm {
+            display: flex;
+            width: 100%;
+            align-items: normal;
+            justify-content: space-evenly;
+        }
+
+        .signup-box {
+            display: flex;
+            width: 70vw;
+            height: 70vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form signUpForm">
+        <form class="signup-box" style="background-color:#41C1BA">
+            <h3>Sign up as a Member</h3>
+            <a href="~/Home/SignUpMember"><input type="button" value="Sign Up"></a>
+        </form>
+
+        <form class="signup-box" style="background-color:#365B6D">
+            <h3>Sign up as a Volunteer</h3>
+            <a href="~/Home/SignUpVolunteer"><input type="button" value="Sign Up"></a>
+        </form>
+    </div>
+</body>
+</html>
+
