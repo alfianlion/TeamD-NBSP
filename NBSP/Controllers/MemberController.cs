@@ -18,9 +18,21 @@ namespace NBSP.Controllers
         {
             return View();
         }
+        public IActionResult Details()
+        {
+            if ((HttpContext.Session.GetString("Role") == null) ||
+                (HttpContext.Session.GetString("Role") != "Member"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            string name = HttpContext.Session.GetString("LoginID");
+            Member member = memberContext.GetMemberDetail(name);
 
-        // GET: MemberController/Details/5
-        public ActionResult Details(int id)
+            return View(member);
+        }
+
+        // GET: MemberController/=ViewVolunteerList
+        public ActionResult ViewVolunteerList()
         {
             List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
             return View(volunteerList);

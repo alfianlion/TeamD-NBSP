@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using NBSP.Models;
 using System.IO;
+using System.Collections;
 
 
 namespace NBSP.DAL
@@ -80,6 +81,32 @@ namespace NBSP.DAL
                 conn.Close();
                 return false;
             }
+        }
+        public Member GetMemberDetail(string memberID)
+        {
+            Member member = new Member();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Member
+                                WHERE Name = @selectedName";
+            cmd.Parameters.AddWithValue("@selectedName", memberID);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    member.MemberID = reader.GetInt32(0);
+                    member.Name = memberID;
+                    member.EmailAddr = reader.GetString(2);
+                    member.PhoneNo = reader.GetInt32(3);
+                    member.Pwd = reader.GetString(4);
+                    member.PasswordConfirm = reader.GetString(4);
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return member;
+
         }
     }
 }
