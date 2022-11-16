@@ -24,6 +24,12 @@ namespace NBSP.Controllers
             List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
             return View(volunteerList);
         }
+
+        public ActionResult Info()
+        {
+            return View();
+        }
+
         // GET: VolunteerController/Details/5
         public ActionResult Details(int id)
         {
