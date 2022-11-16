@@ -32,12 +32,12 @@ namespace NBSP.Models
         public string PasswordConfirm { get; set; }
 
         [Display(Name = "Date Of Birth")] 
-        [DataType(DataType.Date)] 
+        [DataType(DataType.DateTime)] 
         public DateTime? DOB { get; set; }
 
         [Display(Name = "Gender")] 
         [StringLength(1)] 
-        public char? Gender { get; set; }
+        public string? Gender { get; set; }
 
         [Display(Name = "Monday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)]

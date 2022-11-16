@@ -32,7 +32,7 @@ namespace NBSP.DAL
             //Create a SqlCommand object from connection object
             SqlCommand cmd = conn.CreateCommand();
             //Specify the SELECT SQL statement 
-            cmd.CommandText = @"SELECT * FROM Volunteer ORDER BY VolunteerID";
+            cmd.CommandText = @"SELECT * FROM Volunteer";
             //Open a database connection
             conn.Open();
             //Execute the SELECT SQL through a DataReader
@@ -44,27 +44,38 @@ namespace NBSP.DAL
                 vList.Add(
                 new Volunteer
                 {
-                    VolunteerID = reader.GetInt32(0), 
-                    Name = reader.GetString(1), 
-                    EmailAddr = reader.GetString(2), 
-                    ContactNo = reader.GetInt32(3), 
-                    Pwd = reader.GetString(4), 
-                    DOB = reader.GetDateTime(5), 
-                    Gender = reader.GetChar(6), 
-                    Mon = !reader.IsDBNull(7) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Tue = !reader.IsDBNull(8) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Wed = !reader.IsDBNull(9) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Thur = !reader.IsDBNull(10) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Fri = !reader.IsDBNull(11) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Sat = !reader.IsDBNull(12) ?
-                reader.GetBoolean(7) : (bool?)null,
-                    Sun = !reader.IsDBNull(13) ?
-                reader.GetBoolean(7) : (bool?)null,
+                    /*
+                    VolunteerID = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    EmailAddr = reader.GetString(2),
+                    ContactNo = reader.GetInt32(3),
+                    Pwd = reader.GetString(4),
+                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
+                    Gender = !reader.IsDBNull(6) ? reader.GetChar(6) : (char?)null,
+                    Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)null,
+                    Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)null,
+                    Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)null,
+                    Thur = !reader.IsDBNull(10) ? reader.GetBoolean(10) : (bool?)null,
+                    Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)null,
+                    Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)null,
+                    Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)null,
+                    */
+                   
+                    VolunteerID = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    EmailAddr = reader.GetString(2),
+                    ContactNo = reader.GetInt32(3),
+                    Pwd = reader.GetString(4),
+                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
+                    Gender = !reader.IsDBNull(6) ? reader.GetString(6) : (string?)null,
+                    Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)false,
+                    Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)false,
+                    Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)false,
+                    Thur = !reader.IsDBNull(10) ? reader.GetBoolean(10) : (bool?)false,
+                    Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)false,
+                    Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)false,
+                    Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)false,
+                    
                 }
                 );
             }

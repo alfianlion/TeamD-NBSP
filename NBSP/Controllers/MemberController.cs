@@ -17,7 +17,8 @@ namespace NBSP.Controllers
         // GET: MemberController
         public ActionResult Index()
         {
-            return View();
+            List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
+            return View(volunteerList);
         }
         public IActionResult Details()
         {
