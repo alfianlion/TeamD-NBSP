@@ -33,18 +33,9 @@ namespace NBSP.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
         public IActionResult LogIn()
         {
             return View();
-        }
-        public IActionResult ViewVolunteer()
-        {
-            List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
-            return View(volunteerList);
         }
 
         [HttpPost]
