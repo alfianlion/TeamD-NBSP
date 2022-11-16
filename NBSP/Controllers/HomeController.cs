@@ -71,7 +71,7 @@ namespace NBSP.Controllers
                 // Store Login ID in session with the key “LoginID”
                 HttpContext.Session.SetString("LoginID", loginID);
                 // Store user role “SalesPersonnel” as a string in session with the key “Role”
-                HttpContext.Session.SetString("Role", "Volunteer");
+                HttpContext.Session.SetString("Role", "Member");
 
                 // Redirect user to the "SalesPersonnelMain" view through an action
                 return RedirectToAction("Index", "Volunteer");

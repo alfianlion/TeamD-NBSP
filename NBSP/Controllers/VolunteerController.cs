@@ -19,17 +19,9 @@ namespace NBSP.Controllers
         }
 
         // GET: VolunteerController/Details/5
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            if ((HttpContext.Session.GetString("Role") == null) ||
-  (HttpContext.Session.GetString("Role") != "Volunteer"))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            string name = HttpContext.Session.GetString("LoginID");
-            Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
-
-            return View(volunteer);
+            return View();
         }
 
         // GET: VolunteerController/Create
@@ -76,32 +68,23 @@ namespace NBSP.Controllers
         }
 
         // GET: VolunteerController/Edit/5
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            string name = HttpContext.Session.GetString("LoginID");
-            Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
-            HttpContext.Session.SetInt32("VolunteerID", volunteer.VolunteerID);
-            return View(volunteer);
+            return View();
         }
 
         // POST: VolunteerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Volunteer volunteer)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
-            int id = (int)HttpContext.Session.GetInt32("VolunteerID");
-            if (ModelState.IsValid)
+            try
             {
-                //Update staff record to database
-                volunteerContext.Update(volunteer, id);
-                HttpContext.Session.SetString("LoginID", volunteer.Name);
-                return RedirectToAction("Details");
+                return RedirectToAction(nameof(Index));
             }
-            else
+            catch
             {
-                //Input validation fails, return to the view
-                //to display error message
-                return View(volunteer);
+                return View();
             }
         }
 
