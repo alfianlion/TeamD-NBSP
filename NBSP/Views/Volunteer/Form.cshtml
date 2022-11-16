@@ -1,0 +1,163 @@
+﻿@model NBSP.Models.Volunteer
+
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_LayoutV.cshtml";
+}
+
+<div class="form signUpForm">
+    <form asp-controller="Volunteer" asp-action="Form" method="post">
+        <h3>Sign Up</h3>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" readonly class="form-control" />
+
+        <label asp-for="EmailAddr"></label>
+        <input asp-for="EmailAddr" readonly class="form-control" />
+
+        <label asp-for="ContactNo"></label>
+        <input asp-for="ContactNo" readonly class="form-control" />
+        <br />
+        <div class="form-group row">
+            <label asp-for="DOB"
+                   class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8 col-md-4">
+                <input asp-for="DOB" class="form-control"
+                       max="@DateTime.Today.ToString(" yyyy-MM-dd")" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Gender" class="form"></label>
+            <div class="col-sm-9 ">
+                Male
+                @Html.RadioButtonFor(model => model.Gender, "M")
+                Female
+                @Html.RadioButtonFor(model => model.Gender, "F")
+                @*                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Gender"] as List<string>)
+                    {
+                        <label class="col-form-label">
+                            <input asp-for="Gender" type="radio" value="@item" class="form-check-input" />
+                            <span style="font-weight:normal; padding-right:20px">@item</span>
+                        </label>
+                    }
+                </div>*@
+            </div>
+@*        </div>
+         <div class="form-group row">
+            <label asp-for='Mon' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    <div class="col-sm-9 ">
+                        Yes
+                        @Html.RadioButtonFor(model => model.Mon, Convert.ToString(true))
+                        No
+                        @Html.RadioButtonFor(model => model.Mon, Convert.ToString(false))
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <br />
+        <div>
+            Available Slots
+            @foreach (var item in ViewData["Available"] as List<string>)
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                           name="A"
+                           value="@item.ToString()" /> @item.ToString()
+                    </label>
+                </div>
+            }
+        </div>
+@*                 <div class="form-group row">
+            <label asp-for='Tue' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                                <label class="col-form-label">
+                                    <input asp-for="Tue" type="radio" value="@item" class="form-check-input" />
+                                    <span style="font-weight:normal; padding-right:20px">@item</span>
+                                </label>
+                    }
+                </div>
+            </div>
+        </div>
+                 <div class="form-group row">
+            <label asp-for='Wed' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                                <label class="col-form-label">
+                                    <input asp-for="Wed" type="radio" value="@item" class="form-check-input" />
+                                    <span style="font-weight:normal; padding-right:20px">@item</span>
+                                </label>
+                    }
+                </div>
+            </div>
+        </div>
+                 <div class="form-group row">
+            <label asp-for='Thur' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                            <label class="col-form-label">
+                                <input asp-for="Thur" type="radio" value="@item" class="form-check-input" />
+                                <span style="font-weight:normal; padding-right:20px">@item</span>
+                            </label>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for='Fri' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                        <label class="col-form-label">
+                            <input asp-for="Fri" type="radio" value="@item" class="form-check-input" />
+                            <span style="font-weight:normal; padding-right:20px">@item</span>
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+                 <div class="form-group row">
+            <label asp-for='Sat' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                                <label class="col-form-label">
+                                    <input asp-for="Sat" type="radio" value="@item" class="form-check-input" />
+                                    <span style="font-weight:normal; padding-right:20px">@item</span>
+                                </label>
+                    }
+                </div>
+            </div>
+        </div>
+                 <div class="form-group row">
+            <label asp-for='Sun' class="form"></label>
+            <div class="col-sm-9 ">
+                <div class="form-group form-check-inline">
+                    @foreach (var item in ViewData["Available"] as List<string>)
+                    {
+                                <label class="col-form-label">
+                                    <input asp-for="Sun" type="radio" value="@item" class="form-check-input" />
+                                    <span style="font-weight:normal; padding-right:20px">@item</span>
+                                </label>
+                    }
+                </div>
+            </div>
+        </div>*@
+
+
+        <br />
+        <input type="submit" hidden="">
+        <input type="submit" value="Register">
+    </form>
+</div>

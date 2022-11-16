@@ -162,14 +162,10 @@ namespace NBSP.DAL
         {
             SqlCommand cmd = conn.CreateCommand();
 
-            cmd.CommandText = @"UPDATE Volunteer SET Name=@name,
-                                EmailAddr=@email, ContactNo = @telno, DOB = @dob,Gender=@gender
-Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun
-                                WHERE MemberID = @selectedVolunteerID";
+            cmd.CommandText = @"UPDATE Volunteer SET DOB = @dob,Gender=@gender,
+                                Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun
+                                WHERE VolunteerID = @selectedVolunteerID";
 
-            cmd.Parameters.AddWithValue("@name", volunteer.Name);
-            cmd.Parameters.AddWithValue("@email", volunteer.EmailAddr);
-            cmd.Parameters.AddWithValue("@telno", volunteer.ContactNo);
             cmd.Parameters.AddWithValue("@dob", volunteer.DOB);
             cmd.Parameters.AddWithValue("@gender", volunteer.Gender);
             cmd.Parameters.AddWithValue("@mon", volunteer.Mon);
@@ -186,6 +182,42 @@ Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun
             cmd.ExecuteNonQuery();
 
             conn.Close();
+        }
+        public Volunteer CheckAvailable(Volunteer v)
+        {
+            foreach(string a in v.A)
+            {
+                if(a == "Mon")
+                {
+                    v.Mon = true;
+                }
+                if (a == "Tue")
+                {
+                    v.Tue = true;
+                }
+                if (a == "Wed")
+                {
+                    v.Wed = true;
+                }
+                if (a == "Thur")
+                {
+                    v.Thur = true;
+                }
+                if (a == "Fri")
+                {
+                    v.Fri = true;
+                }
+                if (a == "Sat")
+                {
+                    v.Sat = true;
+                }
+                if (a == "Sun")
+                {
+                    v.Sun = true;
+                }
+
+            }
+            return v;
         }
         public Volunteer GetVolunteerDetail(string volunteerID)
         {

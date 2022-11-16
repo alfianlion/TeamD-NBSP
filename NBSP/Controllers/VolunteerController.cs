@@ -12,6 +12,8 @@ namespace NBSP.Controllers
     public class VolunteerController : Controller
     {
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private List<string> genderList = new List<string> { "M", "F" };
+        private List<string> aList = new List<string> { "Mon", "Tue","Wed", "Thur","Fri", "Sat", "Sun"};
         // GET: VolunteerController
         public ActionResult Index()
         {
@@ -56,6 +58,32 @@ namespace NBSP.Controllers
             else
             {
                 ViewData["ResultMessage"] = "Volunteer Already Exists";
+                return View();
+            }
+        }
+        public ActionResult Form()
+        {
+            ViewData["Gender"] = genderList;
+            ViewData["Available"] = aList;
+            string name = HttpContext.Session.GetString("LoginID");
+            Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
+            HttpContext.Session.SetInt32("VolunteerID", volunteer.VolunteerID);
+            return View(volunteer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Form(Volunteer volunteer)
+        {
+            if (ModelState.IsValid)
+            {
+                int? id = HttpContext.Session.GetInt32("VolunteerID");
+                volunteer = volunteerContext.CheckAvailable(volunteer);
+                volunteerContext.UpdateAfter(volunteer, id.Value);
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 return View();
             }
         }

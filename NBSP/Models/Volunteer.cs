@@ -39,6 +39,8 @@ namespace NBSP.Models
         [StringLength(1)] 
         public string? Gender { get; set; }
 
+        public List<string> A { get; set; }
+
         [Display(Name = "Monday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)]
         public bool? Mon { get; set; }
