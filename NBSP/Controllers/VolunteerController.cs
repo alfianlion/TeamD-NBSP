@@ -19,9 +19,17 @@ namespace NBSP.Controllers
         }
 
         // GET: VolunteerController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            if ((HttpContext.Session.GetString("Role") == null) ||
+  (HttpContext.Session.GetString("Role") != "Volunteer"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            string name = HttpContext.Session.GetString("LoginID");
+            Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
+
+            return View(volunteer);
         }
 
         // GET: VolunteerController/Create
@@ -68,23 +76,32 @@ namespace NBSP.Controllers
         }
 
         // GET: VolunteerController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            string name = HttpContext.Session.GetString("LoginID");
+            Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
+            HttpContext.Session.SetInt32("VolunteerID", volunteer.VolunteerID);
+            return View(volunteer);
         }
 
         // POST: VolunteerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Volunteer volunteer)
         {
-            try
+            int id = (int)HttpContext.Session.GetInt32("VolunteerID");
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                //Update staff record to database
+                volunteerContext.Update(volunteer, id);
+                HttpContext.Session.SetString("LoginID", volunteer.Name);
+                return RedirectToAction("Details");
             }
-            catch
+            else
             {
-                return View();
+                //Input validation fails, return to the view
+                //to display error message
+                return View(volunteer);
             }
         }
 

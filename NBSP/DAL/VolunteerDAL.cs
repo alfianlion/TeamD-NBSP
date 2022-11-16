@@ -138,5 +138,88 @@ namespace NBSP.DAL
             //Return id when no error occurs.
             return volunteer.VolunteerID;
         }
+        public void Update(Volunteer volunteer, int id)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+
+            cmd.CommandText = @"UPDATE Volunteer SET Name=@name,
+                                EmailAddr=@email, ContactNo = @telno,Pwd = @password
+                                WHERE VolunteerID = @selectedVolunteerID";
+
+            cmd.Parameters.AddWithValue("@name", volunteer.Name);
+            cmd.Parameters.AddWithValue("@email", volunteer.EmailAddr);
+            cmd.Parameters.AddWithValue("@telno", volunteer.ContactNo);
+            cmd.Parameters.AddWithValue("@password", volunteer.Pwd);
+            cmd.Parameters.AddWithValue("@selectedVolunteerID", id);
+
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+        public void UpdateAfter(Volunteer volunteer, int id)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+
+            cmd.CommandText = @"UPDATE Volunteer SET Name=@name,
+                                EmailAddr=@email, ContactNo = @telno, DOB = @dob,Gender=@gender
+Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun
+                                WHERE MemberID = @selectedVolunteerID";
+
+            cmd.Parameters.AddWithValue("@name", volunteer.Name);
+            cmd.Parameters.AddWithValue("@email", volunteer.EmailAddr);
+            cmd.Parameters.AddWithValue("@telno", volunteer.ContactNo);
+            cmd.Parameters.AddWithValue("@dob", volunteer.DOB);
+            cmd.Parameters.AddWithValue("@gender", volunteer.Gender);
+            cmd.Parameters.AddWithValue("@mon", volunteer.Mon);
+            cmd.Parameters.AddWithValue("@tues", volunteer.Tue);
+            cmd.Parameters.AddWithValue("@wed", volunteer.Wed);
+            cmd.Parameters.AddWithValue("@thurs", volunteer.Thur);
+            cmd.Parameters.AddWithValue("@fri", volunteer.Fri);
+            cmd.Parameters.AddWithValue("@sat", volunteer.Sat);
+            cmd.Parameters.AddWithValue("@sun", volunteer.Sun);
+            cmd.Parameters.AddWithValue("@selectedVolunteerID", id);
+
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+        public Volunteer GetVolunteerDetail(string volunteerID)
+        {
+            Volunteer volunteer = new Volunteer();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Volunteer
+                                WHERE Name = @selectedName";
+            cmd.Parameters.AddWithValue("@selectedName", volunteerID);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    volunteer.VolunteerID = reader.GetInt32(0);
+                    volunteer.Name = volunteerID;
+                    volunteer.EmailAddr = reader.GetString(2);
+                    volunteer.ContactNo = reader.GetInt32(3);
+                    volunteer.Pwd = reader.GetString(4);
+                    volunteer.PasswordConfirm = reader.GetString(4);
+                    volunteer.DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : DateTime.MinValue;
+                    volunteer.Gender = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+                    volunteer.Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Tue = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Wed = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Thur = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Fri = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Sat = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Sun = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return volunteer;
+        }
     }
 }
