@@ -1,4 +1,7 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@{
+    Layout = "~/Views/Shared/_LayoutVolunteerMenu.cshtml";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <style>
         .info-box {
@@ -18,7 +21,7 @@
             height: 10vh;
         }
 
-        p {
+        p{
             margin: 0;
         }
 
@@ -33,11 +36,13 @@
 <body>
     <div class="top-box">
         <p>
-            About NBSP
+            Be a Volunteer today!
         </p>
     </div>
     <div class="info-box">
         <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        <br />
+        <input class="myButton" type="button" name="name" value="Volunteer" onclick="location.href='@Url.Action("VolunteerForm","Volunteer")'" />
     </div>
 </body>
 </html>

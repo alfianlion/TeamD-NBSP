@@ -11,7 +11,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img width="120px" height="120px" src="~/images/NBSP_Logo_Circle.png" alt="NBSP Logo" /></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="Index"><img width="120px" height="120px" src="~/images/NBSP_Logo_Circle.png" alt="NBSP Logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,16 +23,16 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="Details"><strong>Profile</strong></a>
                             </li>
                             <li class="nav-item" style="font-size: 25px;">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><strong>About</strong></a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="About"><strong>About</strong></a>
                             </li>
                             <li class="nav-item" style="font-size: 25px;">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewVolunteer"><strong>Volunteer</strong></a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="ViewVolunteer"><strong>Volunteer</strong></a>
                             </li>
                             <!-- Links that are aligned to the right,
     ml-auto: left margin auto-adjusted -->
                             <li class="nav-item">
                                 <!-- A link for logging out user -->
-                                <span style="position:absolute; top:0; right:0; padding:10px; color:black; text-decoration:none;"><a style="color:black;" href="~/Home/Index">Log out</a></span>
+                                <span style="position:absolute; top:0; right:0; padding:10px; color:black; text-decoration:none;"><a style="color:black;" asp-controller="Home" asp-action="Index">Log out</a></span>
                             </li>
                         </ul>
                     </ul>

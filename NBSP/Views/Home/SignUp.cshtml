@@ -19,6 +19,7 @@
             width: 100%;
             align-items: normal;
             justify-content: space-evenly;
+            border-radius: 30%;
         }
 
         .signup-box {
@@ -35,12 +36,12 @@
     <div class="form signUpForm">
         <form class="signup-box" style="background-color:#41C1BA">
             <h3>Sign up as a Member</h3>
-            <a href="~/Home/SignUpMember"><input type="button" value="Sign Up"></a>
+            <a asp-controller="Home" asp-action="SignUpMember"><input type="button" value="Sign Up"></a>
         </form>
 
         <form class="signup-box" style="background-color:#365B6D">
             <h3>Sign up as a Volunteer</h3>
-            <a href="~/Home/SignUpVolunteer"><input type="button" value="Sign Up"></a>
+            <a asp-controller="Home" asp-action="SignUpVolunteer"><input type="button" value="Sign Up"></a>
         </form>
     </div>
 </body>

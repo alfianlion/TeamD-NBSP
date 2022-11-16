@@ -41,6 +41,7 @@ namespace NBSP.DAL
             List<Volunteer> vList = new List<Volunteer>();
             while (reader.Read())
             {
+                DateTime nulldatetime = new DateTime(0001, 01, 01); 
                 vList.Add(
                 new Volunteer
                 {
@@ -66,8 +67,8 @@ namespace NBSP.DAL
                     EmailAddr = reader.GetString(2),
                     ContactNo = reader.GetInt32(3),
                     Pwd = reader.GetString(4),
-                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
-                    Gender = !reader.IsDBNull(6) ? reader.GetString(6) : (string?)null,
+                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)nulldatetime,
+                    Gender = !reader.IsDBNull(6) ? reader.GetString(6) : (string?)"-",
                     Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)false,
                     Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)false,
                     Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)false,

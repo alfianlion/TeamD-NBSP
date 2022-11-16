@@ -4,10 +4,16 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+    .myButton {
+        margin: 10px;
+        border-color: white;
+        width: 30%;
+    }
+</style>
 
 <div class="form signUpForm">
     <form asp-controller="Home" asp-action="SignUpMember" method="post">
-        <h3>Sign Up</h3>
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" required />
 
@@ -18,15 +24,14 @@
         <input asp-for="PhoneNo" class="form-control" required />
 
         <label asp-for="Pwd"></label>
-        <input asp-for="Pwd" class="form-control" required />
-
+        <input type="password" asp-for="Pwd" class="form-control" required />
 
         <label asp-for="PasswordConfirm"></label>
-        <input asp-for="PasswordConfirm" class="form-control" required />
+        <input type="password" asp-for="PasswordConfirm" class="form-control" required />
         <span asp-validation-for="PasswordConfirm"
               class="text-danger"></span>
         <br />
         <input type="submit" hidden="">
-        <input type="submit" value="Register">
+        <input class="myButton" type="submit" value="Sign Up">
     </form>
 </div>

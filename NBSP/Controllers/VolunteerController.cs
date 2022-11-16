@@ -11,11 +11,18 @@ namespace NBSP.Controllers
 {
     public class VolunteerController : Controller
     {
+        private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
         private List<string> genderList = new List<string> { "M", "F" };
         private List<string> aList = new List<string> { "Mon", "Tue","Wed", "Thur","Fri", "Sat", "Sun"};
+        
         // GET: VolunteerController
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Info()
         {
             return View();
         }
@@ -37,29 +44,7 @@ namespace NBSP.Controllers
         // GET: VolunteerController/Create
         public ActionResult Create()
         {
-            ViewData["ShowResult"] = false;
-            Volunteer volunteer = new Volunteer();
-            return View(volunteer);
-        }
-
-        // POST: SalesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Volunteer volunteer)
-        {
-            ViewData["ShowResult"] = true;
-            if (ModelState.IsValid)
-            {
-                ViewData["ResultMessage"] = "Volunteer Created";
-                volunteerContext.Add(volunteer);
-                ModelState.Clear();
-                return View("Create");
-            }
-            else
-            {
-                ViewData["ResultMessage"] = "Volunteer Already Exists";
-                return View();
-            }
+            return View();
         }
         public ActionResult Form()
         {
