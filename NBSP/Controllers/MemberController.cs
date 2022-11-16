@@ -34,7 +34,7 @@ namespace NBSP.Controllers
         }
 
         // GET: MemberController/=ViewVolunteerList
-        public ActionResult ViewVolunteerList()
+        public ActionResult ViewVolunteer()
         {
             List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
             return View(volunteerList);

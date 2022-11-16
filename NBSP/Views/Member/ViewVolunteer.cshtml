@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<NBSP.Models.Volunteer>
-
+@{
+    Layout = "~/Views/Shared/_LayoutMemberMenu.cshtml";
+}
 @if (Model.ToList().Count > 0)
 {
     <div class="table-responsive">
