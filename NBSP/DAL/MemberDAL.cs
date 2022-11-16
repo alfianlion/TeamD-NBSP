@@ -108,5 +108,25 @@ namespace NBSP.DAL
             return member;
 
         }
+        public void Update(Member member,int id)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+
+            cmd.CommandText = @"UPDATE Member SET Name=@name,
+                                EmailAddr=@email, PhoneNo = @telno, Pwd = @password
+                                WHERE MemberID = @selectedMemberID";
+
+            cmd.Parameters.AddWithValue("@name", member.Name);
+            cmd.Parameters.AddWithValue("@email", member.EmailAddr);
+            cmd.Parameters.AddWithValue("@telno", member.PhoneNo);
+            cmd.Parameters.AddWithValue("@password", member.Pwd);
+            cmd.Parameters.AddWithValue("@selectedMemberID", id);
+
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
     }
 }

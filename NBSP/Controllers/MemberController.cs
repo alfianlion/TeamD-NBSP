@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NBSP.DAL;
 using NBSP.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,23 +69,32 @@ namespace NBSP.Controllers
 
 
         // GET: MemberController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            string name = HttpContext.Session.GetString("LoginID");
+            Member member = memberContext.GetMemberDetail(name);
+            HttpContext.Session.SetInt32("MemberID", member.MemberID);
+            return View(member);
         }
 
         // POST: MemberController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Member member)
         {
-            try
+            int id= (int)HttpContext.Session.GetInt32("MemberID");
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                //Update staff record to database
+                memberContext.Update(member,id);
+                HttpContext.Session.SetString("LoginID", member.Name);
+                return RedirectToAction("Details");
             }
-            catch
+            else
             {
-                return View();
+                //Input validation fails, return to the view
+                //to display error message
+                return View(member);
             }
         }
 
