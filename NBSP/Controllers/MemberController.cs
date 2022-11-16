@@ -40,35 +40,6 @@ namespace NBSP.Controllers
             return View(volunteerList);
         }
 
-        // GET: MemberController/Create
-        public ActionResult Create()
-        {
-            ViewData["ShowResult"] = false;
-            Member member = new Member();
-            return View(member);
-        }
-
-        // POST: SalesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Member member)
-        {
-            ViewData["ShowResult"] = true;
-            if (ModelState.IsValid)
-            {
-                ViewData["ResultMessage"] = "Customer Created";
-                memberContext.Add(member);
-                ModelState.Clear();
-                return View("Create");
-            }
-            else
-            {
-                ViewData["ResultMessage"] = "Customer Already Exists";
-                return View();
-            }
-        }
-
-
         // GET: MemberController/Edit/5
         public ActionResult Edit()
         {
