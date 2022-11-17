@@ -26,6 +26,10 @@ namespace NBSP.Controllers
         {
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
 
         // GET: VolunteerController/Details/5
         public ActionResult Details()

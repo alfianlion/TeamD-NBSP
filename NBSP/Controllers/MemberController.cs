@@ -20,6 +20,12 @@ namespace NBSP.Controllers
             List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
             return View(volunteerList);
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Details()
         {
             if ((HttpContext.Session.GetString("Role") == null) ||
