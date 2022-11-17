@@ -169,13 +169,62 @@ namespace NBSP.DAL
 
             cmd.Parameters.AddWithValue("@dob", volunteer.DOB);
             cmd.Parameters.AddWithValue("@gender", volunteer.Gender);
-            cmd.Parameters.AddWithValue("@mon", volunteer.Mon);
-            cmd.Parameters.AddWithValue("@tues", volunteer.Tue);
-            cmd.Parameters.AddWithValue("@wed", volunteer.Wed);
-            cmd.Parameters.AddWithValue("@thurs", volunteer.Thur);
-            cmd.Parameters.AddWithValue("@fri", volunteer.Fri);
-            cmd.Parameters.AddWithValue("@sat", volunteer.Sat);
-            cmd.Parameters.AddWithValue("@sun", volunteer.Sun);
+            if (volunteer.Mon == null)
+            {
+                cmd.Parameters.AddWithValue("@mon", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@mon", volunteer.Mon);
+            }
+            if (volunteer.Tue == null)
+            {
+                cmd.Parameters.AddWithValue("@tues", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@tues", volunteer.Tue);
+            }
+            if (volunteer.Wed == null)
+            {
+                cmd.Parameters.AddWithValue("@wed", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@wed", volunteer.Wed);
+            }
+            if (volunteer.Thur == null)
+            {
+                cmd.Parameters.AddWithValue("@thurs", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@thurs", volunteer.Thur);
+            }
+            if (volunteer.Fri == null)
+            {
+                cmd.Parameters.AddWithValue("@fri", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@fri", volunteer.Fri);
+            }
+            if (volunteer.Sat == null)
+            {
+                cmd.Parameters.AddWithValue("@sat", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@sat", volunteer.Sat);
+            }
+            if (volunteer.Sun == null)
+            {
+                cmd.Parameters.AddWithValue("@sun", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@sun", volunteer.Sun);
+            }
             cmd.Parameters.AddWithValue("@selectedVolunteerID", id);
 
             conn.Open();
