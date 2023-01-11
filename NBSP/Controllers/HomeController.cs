@@ -68,6 +68,15 @@ namespace NBSP.Controllers
                 // Redirect user to the "SalesPersonnelMain" view through an action
                 return RedirectToAction("Index", "Volunteer");
             }
+            if (loginID == "admin" && password == "1234")
+            {
+                // Store Login ID in session with the key “LoginID”
+                HttpContext.Session.SetString("LoginID", loginID);
+                // Store user role “Staff” as a string in session with the key “Role”
+                HttpContext.Session.SetString("Role", "Admin");
+                // Redirect user to the "StaffMain" view through an action
+                return RedirectToAction("Index", "Admin");
+            }
             else
             {
                 TempData["Message"] = "You are wrong";
