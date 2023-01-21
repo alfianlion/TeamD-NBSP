@@ -87,8 +87,8 @@ namespace NBSP.Controllers
         public ActionResult Delete(Volunteer volunteer)
         {
             // Delete the staff record from database
-            volunteerContext.Delete(volunteer.VolunteerID);
-            return RedirectToAction("Index");
+            volunteerContext.Delete(Convert.ToString(volunteer.VolunteerID));
+            return RedirectToAction("ViewVolunteer");
         }
 
     }
