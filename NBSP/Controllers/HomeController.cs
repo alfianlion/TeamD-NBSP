@@ -16,6 +16,7 @@ namespace NBSP.Controllers
     {
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private DonationDAL donationContext = new DonationDAL();
         private SqlConnection conn;
 
         private readonly ILogger<HomeController> _logger;
@@ -137,7 +138,27 @@ namespace NBSP.Controllers
                 return View();
             }
         }
-
+        public IActionResult AddDonation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddDonation(Donation donation)
+        {
+            ViewData["ShowResult"] = true;
+            if (ModelState.IsValid)
+            {
+                ViewData["ResultMessage"] = "Donation Recieved";
+                donationContext.Add(donation);
+                ModelState.Clear();
+                return View("Index");
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Donation Failed";
+                return View();
+            }
+        }
 
         public IActionResult Privacy()
         {
