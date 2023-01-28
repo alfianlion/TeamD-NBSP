@@ -1,0 +1,110 @@
+﻿using Microsoft.Extensions.Configuration;
+using NBSP.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace NBSP.DAL
+{
+    public class JobDAL
+    {
+        private IConfiguration Configuration { get; }
+        private SqlConnection conn;
+        //Constructor
+        public JobDAL()
+        {
+            //Read ConnectionString from appsettings.json file
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
+            string strConn = Configuration.GetConnectionString(
+            "NBSPConnectionString");
+            //Instantiate a SqlConnection object with the
+            //Connection String read.
+            conn = new SqlConnection(strConn);
+        }
+        public List<Job> GetAllJob()
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify the SELECT SQL statement 
+            cmd.CommandText = @"SELECT * FROM Job";
+            //Open a database connection
+            conn.Open();
+            //Execute the SELECT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+            //Read all records until the end, save data into a staff list
+            List<Job> jList = new List<Job>();
+            while (reader.Read())
+            {
+                DateTime nulldatetime = new DateTime(0001, 01, 01);
+                jList.Add(
+                new Job
+                {
+                    /*
+                    VolunteerID = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    EmailAddr = reader.GetString(2),
+                    ContactNo = reader.GetInt32(3),
+                    Pwd = reader.GetString(4),
+                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
+                    Gender = !reader.IsDBNull(6) ? reader.GetChar(6) : (char?)null,
+                    Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)null,
+                    Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)null,
+                    Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)null,
+                    Thur = !reader.IsDBNull(10) ? reader.GetBoolean(10) : (bool?)null,
+                    Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)null,
+                    Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)null,
+                    Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)null,
+                    */
+
+                    JobID = reader.GetInt16(0),
+                    JobName = reader.GetString(1),
+                    Summary = !reader.IsDBNull(2) ? reader.GetString(2) : "Unknown",
+                 Description= !reader.IsDBNull(3) ? reader.GetString(3) : "Unknown",
+                Company = reader.GetString(4),
+                    Salary = reader.GetDecimal(5),
+                    PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : "Unknown",
+                EmailAddr= !reader.IsDBNull(7) ? reader.GetString(7) : "Unknown",
+            }
+                );
+            }
+            //Close DataReader
+            reader.Close();
+            //Close the database connection
+            conn.Close();
+            return jList;
+        }
+        public Job GetDetail(int jobID)
+        {
+            Job job = new Job();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Job
+                                WHERE JobID = @selectedName";
+            cmd.Parameters.AddWithValue("@selectedName", jobID);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    job.JobID = jobID;
+                    job.JobName = reader.GetString(1);
+                    job.Summary = !reader.IsDBNull(2) ? reader.GetString(2) : null;
+                    job.Description = !reader.IsDBNull(3) ? reader.GetString(3) : null;
+                    job.Company = reader.GetString(4);
+                    job.Salary = reader.GetDecimal(5);
+                    job.PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+                    job.EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : null;
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return job;
+        }
+    }
+}

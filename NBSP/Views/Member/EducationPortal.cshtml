@@ -1,0 +1,38 @@
+﻿@model NBSP.Models.Member
+
+@{
+    ViewData["Title"] = "EducationPortal";
+    Layout = "~/Views/Shared/_LayoutMemberMenu.cshtml";
+}
+<head>
+    <style>
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
+
+        .top-box {
+            text-align: center;
+            border: solid 1px black;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-box">
+        <img width="20%;" height="20%;" src="~/images/govsg.png" alt="Educational Portal Image" />
+        <p>
+            A platform to provide educational aids for your family
+        </p>
+    </div>
+    <div class="info-box">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+    </div>
+    <a href="https://www.gov.sg/article/financial-support-for-singaporean-students-at-every-stage-of-education" target="_blank"><button type="button">Click</button></a>
+</body>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>

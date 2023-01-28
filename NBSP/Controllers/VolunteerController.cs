@@ -142,5 +142,17 @@ namespace NBSP.Controllers
                 return View();
             }
         }
+        public ActionResult EducationPortal()
+        {
+            return View();
+        }
+        public ActionResult CounselPortal()
+        {
+            return View();
+        }
+        public ActionResult SubsidiesPortal()
+        {
+            return View();
+        }
     }
 }

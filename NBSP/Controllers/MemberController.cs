@@ -14,6 +14,7 @@ namespace NBSP.Controllers
     {
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private JobDAL jobContext = new JobDAL();
         // GET: MemberController
         public ActionResult Index()
         {
@@ -24,6 +25,29 @@ namespace NBSP.Controllers
         public ActionResult About()
         {
             return View();
+        }
+        public ActionResult EducationPortal()
+        {
+            return View();
+        }
+        public ActionResult CounselPortal()
+        {
+            return View();
+        }
+        public ActionResult SubsidiesPortal()
+        {
+            return View();
+        }
+        public ActionResult JobPortal()
+        {
+            List<Job> jobList = jobContext.GetAllJob();
+            return View(jobList);
+        }
+        public ActionResult ViewJob(int id)
+        {
+            Job job = jobContext.GetDetail(id);
+            //Customer customerCheck = CustomerDAL.GetDetails(memberID, password)
+            return View(job);
         }
 
         public IActionResult Details()
