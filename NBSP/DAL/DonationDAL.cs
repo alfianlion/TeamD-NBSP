@@ -33,9 +33,9 @@ namespace NBSP.DAL
             SqlCommand cmd = conn.CreateCommand();
             //Specify an INSERT SQL statement which will
             //return the auto-generated StaffID after insertion
-            cmd.CommandText = @"INSERT INTO Donation (DonationDate, Name, Amount, Note)
+            cmd.CommandText = @"INSERT INTO Donation (DonationDate, DonationName, Amount, Note,PhoneNo)
                                 OUTPUT INSERTED.DonationID
-                                VALUES(@date, @name, @amount, @note)";
+                                VALUES(@date, @name, @amount, @note,@phone)";
             //Define the parameters used in SQL statement, value for each parameter
             //is retrieved from respective class's property.
             cmd.Parameters.AddWithValue("@date", DateTime.Now);
@@ -55,6 +55,14 @@ namespace NBSP.DAL
             else
             {
                 cmd.Parameters.AddWithValue("@note", donation.Description);
+            }
+            if (donation.PhoneNo == null)
+            {
+                cmd.Parameters.AddWithValue("@phone", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@phone", donation.PhoneNo);
             }
             //A connection to database must be opened before any operations made.
             conn.Open();

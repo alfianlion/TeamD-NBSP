@@ -16,7 +16,7 @@ namespace NBSP.Models
         public DateTime DonationDate { get; set; }
 
         [Display(Name = "Donation Name")]
-        [StringLength(50)]
+        [StringLength(100)]
         public string? Name { get; set; }
 
         [Display(Name = "Amount")]
@@ -25,6 +25,7 @@ namespace NBSP.Models
         [Display(Name = "Description")]
         [StringLength(255)]
         public string? Description { get; set; }
+        public int? PhoneNo { get; set; }
 
     }
 }

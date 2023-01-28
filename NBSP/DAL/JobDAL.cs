@@ -62,7 +62,7 @@ namespace NBSP.DAL
                     Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)null,
                     */
 
-                    JobID = reader.GetInt16(0),
+                    JobID = reader.GetInt32(0),
                     JobName = reader.GetString(1),
                     Summary = !reader.IsDBNull(2) ? reader.GetString(2) : "Unknown",
                  Description= !reader.IsDBNull(3) ? reader.GetString(3) : "Unknown",
@@ -105,6 +105,62 @@ namespace NBSP.DAL
             reader.Close();
             conn.Close();
             return job;
+        }
+        public int Add(Job job)
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify an INSERT SQL statement which will
+            //return the auto-generated StaffID after insertion
+            cmd.CommandText = @"INSERT INTO Job (JobTitle, Summary, JobDescription, Company,Salary,PhoneNo,EmailAddr) 
+        OUTPUT INSERTED.JobID 
+        VALUES(@name, @summary, @desc, @company,@money,@phone,@email)";
+            //Define the parameters used in SQL statement, value for each parameter
+            //is retrieved from respective class's property.
+            cmd.Parameters.AddWithValue("@name", job.JobName);
+            if (job.Summary == null)
+            {
+                cmd.Parameters.AddWithValue("@summary", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@summary", job.Summary);
+            }
+            if (job.Description == null)
+            {
+                cmd.Parameters.AddWithValue("@desc", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@desc", job.Description);
+            }
+            cmd.Parameters.AddWithValue("@company",job.Company);
+            cmd.Parameters.AddWithValue("@money", job.Salary);
+            if (job.PhoneNo == null)
+            {
+                cmd.Parameters.AddWithValue("@phone", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@phone", job.PhoneNo);
+            }
+            if (job.EmailAddr == null)
+            {
+                cmd.Parameters.AddWithValue("@email", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@email", job.EmailAddr);
+            }
+            //A connection to database must be opened before any operations made.
+            conn.Open();
+            //ExecuteScalar is used to retrieve the auto-generated
+            //StaffID after executing the INSERT SQL statement
+            job.JobID = (int)cmd.ExecuteScalar();
+            //A connection should be closed after operations.
+            conn.Close();
+            //Return id when no error occurs.
+            return job.JobID;
         }
     }
 }

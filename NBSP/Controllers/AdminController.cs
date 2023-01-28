@@ -12,12 +12,17 @@ namespace NBSP.Controllers
     public class AdminController : Controller
     {
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private JobDAL jobContext = new JobDAL();
         // GET: AdminController
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Job()
         {
             return View();
         }
@@ -34,24 +39,19 @@ namespace NBSP.Controllers
         }
 
         // GET: AdminController/Create
-        public ActionResult Create()
+        public ActionResult CreateJob()
         {
+            Job job = new Job();
             return View();
         }
 
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreateJob(Job job)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            jobContext.Add(job);
+            return View("Job");
         }
 
         // GET: AdminController/Edit/5

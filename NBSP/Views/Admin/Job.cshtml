@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Job";
+    Layout = "~/Views/Shared/_LayoutAdminMenu.cshtml";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        h3 {
+            color: white;
+        }
+
+        input[type=button] {
+            width: 20vw;
+            border: white 1px solid;
+            border-radius: 10vw;
+            font-weight: bold;
+            margin-top: 10px;
+            height: 50px;
+        }
+
+        .signUpForm {
+            display: flex;
+            width: 100%;
+            align-items: normal;
+            justify-content: space-evenly;
+            border-radius: 30%;
+        }
+
+        .signup-box {
+            display: flex;
+            width: 70vw;
+            height: 70vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form signUpForm">
+        <form class="signup-box" style="background-color:#41C1BA">
+            <h3>Add a Job</h3>
+            <a asp-controller="Admin" asp-action="CreateJob"><input type="button" value="Add"></a>
+        </form>
+
+        <form class="signup-box" style="background-color:#365B6D">
+            <h3>Delete a Job</h3>
+            <a asp-controller="Admin" asp-action="DeleteJob"><input type="button" value="Delete"></a>
+        </form>
+    </div>
+</body>
+</html>
