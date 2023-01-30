@@ -13,6 +13,7 @@ namespace NBSP.Controllers
     {
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
+        private JobDAL jobContext = new JobDAL();
         private List<string> genderList = new List<string> { "M", "F" };
         private List<string> aList = new List<string> { "Mon", "Tue","Wed", "Thur","Fri", "Sat", "Sun"};
         
@@ -153,6 +154,17 @@ namespace NBSP.Controllers
         public ActionResult SubsidiesPortal()
         {
             return View();
+        }
+        public ActionResult JobPortal()
+        {
+            List<Job> jobList = jobContext.GetAllJob();
+            return View(jobList);
+        }
+        public ActionResult ViewJob(int id)
+        {
+            Job job = jobContext.GetDetail(id);
+            //Customer customerCheck = CustomerDAL.GetDetails(memberID, password)
+            return View(job);
         }
     }
 }

@@ -74,5 +74,55 @@ namespace NBSP.DAL
             //Return id when no error occurs.
             return donation.DonationID;
         }
+        public List<Donation> GetAllDonation()
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify the SELECT SQL statement 
+            cmd.CommandText = @"SELECT * FROM Donation";
+            //Open a database connection
+            conn.Open();
+            //Execute the SELECT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+            //Read all records until the end, save data into a staff list
+            List<Donation> dList = new List<Donation>();
+            while (reader.Read())
+            {
+                DateTime nulldatetime = new DateTime(0001, 01, 01);
+                dList.Add(
+                new Donation
+                {
+                    /*
+                    VolunteerID = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    EmailAddr = reader.GetString(2),
+                    ContactNo = reader.GetInt32(3),
+                    Pwd = reader.GetString(4),
+                    DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
+                    Gender = !reader.IsDBNull(6) ? reader.GetChar(6) : (char?)null,
+                    Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)null,
+                    Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)null,
+                    Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)null,
+                    Thur = !reader.IsDBNull(10) ? reader.GetBoolean(10) : (bool?)null,
+                    Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)null,
+                    Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)null,
+                    Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)null,
+                    */
+
+                    DonationID = reader.GetInt32(0),
+                    DonationDate = reader.GetDateTime(1),
+                    Name = !reader.IsDBNull(2) ? reader.GetString(2) : "Unknown",
+                    Money = reader.GetDecimal(3),
+                    Description = !reader.IsDBNull(4) ? reader.GetString(4) : "Unknown",
+                    PhoneNo = !reader.IsDBNull(5) ? reader.GetString(5) : "Unknown",
+                }
+                );
+            }
+            //Close DataReader
+            reader.Close();
+            //Close the database connection
+            conn.Close();
+            return dList;
+        }
     }
 }

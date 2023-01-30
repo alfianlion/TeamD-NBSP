@@ -20,12 +20,12 @@ namespace NBSP.Models
         public string? Name { get; set; }
 
         [Display(Name = "Amount")]
-        public int Money { get; set; }
+        public Decimal Money { get; set; }
 
         [Display(Name = "Description")]
         [StringLength(255)]
         public string? Description { get; set; }
-        public int? PhoneNo { get; set; }
+        public string? PhoneNo { get; set; }
 
     }
 }

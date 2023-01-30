@@ -13,6 +13,7 @@ namespace NBSP.Controllers
     {
         private VolunteerDAL volunteerContext = new VolunteerDAL();
         private JobDAL jobContext = new JobDAL();
+        private DonationDAL donationContext = new DonationDAL();
         // GET: AdminController
         public ActionResult Index()
         {
@@ -31,6 +32,11 @@ namespace NBSP.Controllers
             List<Volunteer> volunteerList = volunteerContext.GetAllVolunteer();
             return View(volunteerList);
         }
+        public ActionResult ViewDonation()
+        {
+            List<Donation> donationList = donationContext.GetAllDonation();
+            return View(donationList);
+        }
 
         // GET: AdminController/Details/5
         public ActionResult Details(int id)
@@ -44,6 +50,11 @@ namespace NBSP.Controllers
             Job job = new Job();
             return View();
         }
+        public ActionResult ViewJob()
+        {
+            List<Job> jobList = jobContext.GetAllJob();
+            return View(jobList);
+        }
 
         // POST: AdminController/Create
         [HttpPost]
@@ -52,6 +63,20 @@ namespace NBSP.Controllers
         {
             jobContext.Add(job);
             return View("Job");
+        }
+        public ActionResult DeleteJob(int id)
+        {
+            Job job = jobContext.GetDetail(id);
+            return View(job);
+        }
+        // POST: AdminController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteJob(Job job)
+        {
+            // Delete the staff record from database
+            jobContext.Delete(job.JobID);
+            return RedirectToAction("ViewJob");
         }
 
         // GET: AdminController/Edit/5

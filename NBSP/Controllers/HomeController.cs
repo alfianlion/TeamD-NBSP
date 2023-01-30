@@ -151,7 +151,7 @@ namespace NBSP.Controllers
                 ViewData["ResultMessage"] = "Donation Recieved";
                 donationContext.Add(donation);
                 ModelState.Clear();
-                return View("Index");
+                return View("ThankYou");
             }
             else
             {
