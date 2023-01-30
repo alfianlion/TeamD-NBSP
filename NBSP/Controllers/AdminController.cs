@@ -54,6 +54,7 @@ namespace NBSP.Controllers
         {
             List<Job> jobList = jobContext.GetAllJob();
             return View(jobList);
+
         }
 
         // POST: AdminController/Create
