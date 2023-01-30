@@ -78,6 +78,17 @@ namespace NBSP.Controllers
             jobContext.Delete(job.JobID);
             return RedirectToAction("ViewJob");
         }
+        public ActionResult JobPortal()
+        {
+            List<Job> jobList = jobContext.GetAllJob();
+            return View(jobList);
+        }
+        public ActionResult ViewJobDetails(int id)
+        {
+            Job job = jobContext.GetDetail(id);
+            //Customer customerCheck = CustomerDAL.GetDetails(memberID, password)
+            return View(job);
+        }
 
         // GET: AdminController/Edit/5
         public ActionResult Edit(int id)

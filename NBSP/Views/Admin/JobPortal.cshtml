@@ -1,0 +1,50 @@
+﻿@model IEnumerable<NBSP.Models.Job>
+
+@{
+    ViewData["Title"] = "JobPortal";
+    Layout = "~/Views/Shared/_LayoutAdminMenu.cshtml";
+}
+
+<h1>JobPortal</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a asp-action="ViewJobDetails" asp-controller="Admin"
+                   asp-route-id="@item.JobID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
