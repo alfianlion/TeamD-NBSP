@@ -4,75 +4,77 @@
     ViewData["Title"] = "ViewJob";
     Layout = "~/Views/Shared/_LayoutAdminMenu.cshtml";
 }
+<head>
+    <style>
+        .row {
+            display: flex;
+        }
+        .col {
+            flex: 45%;
+            padding: 16px;
+            height: 50%;
+            margin: 10px;
+            background: #BEBED8;
+            border: 1px solid white;
+            border-radius: 20px;
+        }
 
-<h1>ViewJob</h1>
+        .myButton {
+            margin: 10px;
+            border-color: white;
+            width: 30%;
+            background-color: #658C9D;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.JobID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Summary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EmailAddr)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+        a:hover{
+            text-decoration:none;
+            color:white;
+        }
+
+    </style>
+</head>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col">
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.JobID): 
+            </span>
                 @Html.DisplayFor(modelItem => item.JobID)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.JobName): 
+            </span>
                 @Html.DisplayFor(modelItem => item.JobName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.Description): 
+            </span>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.Company): 
+            </span>
                 @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.Salary): 
+            </span>
                 @Html.DisplayFor(modelItem => item.Salary)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.PhoneNo): 
+            </span>
                 @Html.DisplayFor(modelItem => item.PhoneNo)
-            </td>
-            <td>
+            <br>
+            <span style="font-weight:bold;">
+                @Html.DisplayNameFor(model => model.EmailAddr): 
+            </span>
                 @Html.DisplayFor(modelItem => item.EmailAddr)
-            </td>
-            <td>
+            <br><br>
+            <a class="myButton" asp-action="DeleteJob" asp-controller="Admin"
+            asp-route-id="@item.JobID" style>Delete</a>
+        </div>
+    }
+</div>
 
-                <a asp-action="DeleteJob" asp-controller="Admin"
-                   asp-route-id="@item.JobID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>

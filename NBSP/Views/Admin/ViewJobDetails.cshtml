@@ -5,41 +5,109 @@
     Layout = "~/Views/Shared/_LayoutAdminMenu.cshtml";
 }
 
-<h1>ViewJob</h1>
+<head>
+    <style>
 
-<p>
-    JobDetails
-</p>
-<fieldset class="FormContent">
-    <div class="form-group row">
-        <label asp-for="JobName" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
-            @Html.Display("Name")
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .border-box {
+            border-radius: 25px;
+            background: #BEBED8;
+            padding: 20px;
+            width: 750px;
+            height: 500px;
+            color: white;
+            text-align: left;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
+            color: black;
+        }
+
+        .myButton {
+            margin: 10px;
+            border-color: white;
+            width: 30%;
+        }
+
+        .loginTitle {
+            color: black;
+        }
+
+        .button-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #txtLoginID {
+            height: 25px;
+            border: 0px solid white;
+            margin-left: auto;
+            color: black;
+        }
+
+        #txtPassword {
+            height: 25px;
+            border: 0px solid white;
+            color: black;
+        }
+
+        #heading {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #legendtxt {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="border-box">
+        <div class="form-group">
+            <label asp-for="JobName">Job Name: </label>
+            @if (@Html.Display("JobName") is null)
+            {
+                <span>No Title</span>
+            } else
+            {
+                @Html.Display("JobName")
+            }
+
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Description" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+        <label asp-for="Description">Description: </label>
             @Html.Display("Description")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Salary" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="Salary">Salary: </label>
             @Html.Display("Salary")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="PhoneNo" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="PhoneNo">Phone Number: </label>
             @Html.Display("PhoneNo")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="EmailAddr" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="EmailAddr">Email Address: </label>
             @Html.Display("EmailAddr")
         </div>
+        <div class="form-group">
+            <a asp-action="JobPortal">Back to Profile</a>
+        </div>
+
     </div>
-</fieldset>
+</div>
 
