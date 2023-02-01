@@ -14,6 +14,7 @@
                     <th>D.O.B</th>
                     <th>Gender</th>
                     <th>Avaliability</th>
+                    <th>Skill Sets</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,66 +25,79 @@
                 @{string FriA = "";}
                 @{string SatA = "";}
                 @{string SunA = "";}
+                @{string ChildA = "";}
+                @{string ChoresA = "";}
                 @{DateTime nulldatetime = new DateTime(0001, 01, 01);}
                 @{ string nulldate = "Not Given";}
                 @foreach (var item in Model)
                 {
-                        MonA = "";
-                        TueA = "";
-                        WedA = "";
-                        ThurA = "";
-                        FriA = "";
-                        SatA = "";
-                        SunA = "";
-                        @if (item.Mon == true)
-                        {
-                            MonA = "Mon ";
-                        }
-                        @if (item.Tue == true)
-                        {
-                            TueA = "Tue ";
-                        }
-                        @if (item.Wed == true)
-                        {
-                            WedA = "Wed ";
-                        }
-                        @if (item.Thur == true)
-                        {
-                            ThurA = "Thur ";
-                        }
-                        @if (item.Fri == true)
-                        {
-                            FriA = "Fri ";
-                        }
-                        @if (item.Sat == true)
-                        {
-                            SatA = "Sat ";
-                        }
-                        @if (item.Sun == true)
-                        {
-                            SunA = "Sun ";
-                        }
-                        <tr>
-                            <th>@item.Name</th>
-                            <th>@item.EmailAddr</th>
-                            <th>@item.ContactNo.ToString()</th>
-                            <th>
-                                @if (item.DOB == nulldatetime)
-                                {
-                                    @nulldate
-                                }
-                                else
-                                {
-                                    @item.DOB.ToString()
-                                }
-
-                            </th>
-                            <th>@item.Gender.ToString()</th>
-                            <th>@MonA @TueA @WedA @ThurA @FriA @SatA @SunA</th>
-
-                        </tr>
+                    MonA = "";
+                    TueA = "";
+                    WedA = "";
+                    ThurA = "";
+                    FriA = "";
+                    SatA = "";
+                    SunA = "";
+                    ChildA = "";
+                    ChoresA = "";
+                    @if (item.Mon == true)
+                    {
+                        MonA = "Mon ";
                     }
-                </tbody>
+                    @if (item.Tue == true)
+                    {
+                        TueA = "Tue ";
+                    }
+                    @if (item.Wed == true)
+                    {
+                        WedA = "Wed ";
+                    }
+                    @if (item.Thur == true)
+                    {
+                        ThurA = "Thur ";
+                    }
+                    @if (item.Fri == true)
+                    {
+                        FriA = "Fri ";
+                    }
+                    @if (item.Sat == true)
+                    {
+                        SatA = "Sat ";
+                    }
+                    @if (item.Sun == true)
+                    {
+                        SunA = "Sun ";
+                    }
+                    @if (item.Childcare == true)
+                    {
+                        ChildA = "Childcare ";
+                    }
+                    @if (item.Chores == true)
+                    {
+                        ChoresA = "Chores ";
+                    }
+                <tr>
+                    <th>@item.Name</th>
+                    <th>@item.EmailAddr</th>
+                    <th>@item.ContactNo.ToString()</th>
+                    <th>
+                        @if (item.DOB == nulldatetime)
+                        {
+                            @nulldate
+                        }
+                        else
+                        {
+                            @item.DOB.ToString()
+                        }
+
+                    </th>
+                    <th>@item.Gender.ToString()</th>
+                    <th>@MonA @TueA @WedA @ThurA @FriA @SatA @SunA</th>
+                    <th>@ChildA @ChoresA </th>
+
+                </tr>
+                }
+            </tbody>
         </table>
     </div>
 }

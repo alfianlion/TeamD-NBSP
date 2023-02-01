@@ -303,7 +303,7 @@ namespace NBSP.DAL
             Volunteer volunteer = new Volunteer();
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT * FROM Volunteer
-                                WHERE VolunteerID = @selectedName";
+                                WHERE Name = @selectedName";
             cmd.Parameters.AddWithValue("@selectedName", volunteerID);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
