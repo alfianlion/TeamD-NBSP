@@ -14,6 +14,7 @@
                     <th>D.O.B</th>
                     <th>Gender</th>
                     <th>Avaliability</th>
+                    <th>Skill Sets</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,8 @@
                 @{string FriA = "";}
                 @{string SatA = "";}
                 @{string SunA = "";}
+                @{string ChildA = "";}
+                @{string ChoresA = "";}
                 @{DateTime nulldatetime = new DateTime(0001, 01, 01);}
                 @{ string nulldate = "Not Given";}
                 @foreach (var item in Model)
@@ -35,6 +38,8 @@
                     FriA = "";
                     SatA = "";
                     SunA = "";
+                    ChildA = "";
+                    ChoresA = "";
                     @if (item.Mon == true)
                     {
                         MonA = "Mon ";
@@ -63,29 +68,38 @@
                     {
                         SunA = "Sun ";
                     }
-                <tr>
-                    <th>@item.Name</th>
-                    <th>@item.EmailAddr</th>
-                    <th>@item.ContactNo.ToString()</th>
-                    <th>
-                        @if (item.DOB == nulldatetime)
-                        {
-                            @nulldate
-                        }
-                        else
-                        {
-                            @item.DOB.ToString()
-                        }
+                    @if (item.Childcare == true)
+                    {
+                        ChildA = "Childcare ";
+                    }
+                    @if (item.Chores == true)
+                    {
+                        ChoresA = "Chores ";
+                    }
+                    <tr>
+                        <th>@item.Name</th>
+                        <th>@item.EmailAddr</th>
+                        <th>@item.ContactNo.ToString()</th>
+                        <th>
+                            @if (item.DOB == nulldatetime)
+                            {
+                                @nulldate
+                            }
+                            else
+                            {
+                                @item.DOB.ToString()
+                            }
 
-                    </th>
-                    <th>@item.Gender.ToString()</th>
-                    <th>@MonA @TueA @WedA @ThurA @FriA @SatA @SunA</th>
-                    <td>
-                        <a asp-action="Delete" asp-controller="Admin"
-                           asp-route-id="@item.VolunteerID">Delete</a>
-                    </td>
-                </tr>
-}
+                        </th>
+                        <th>@item.Gender.ToString()</th>
+                        <th>@MonA @TueA @WedA @ThurA @FriA @SatA @SunA</th>
+                        <th>@ChildA @ChoresA </th>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Admin"
+                               asp-route-id="@item.VolunteerID">Delete</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
