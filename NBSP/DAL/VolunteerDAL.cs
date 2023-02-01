@@ -340,7 +340,7 @@ namespace NBSP.DAL
             //to delete a staff record specified by a Staff ID
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"DELETE FROM Volunteer
- WHERE VolunteerID = @selectVolunteerID";
+ WHERE Name = @selectVolunteerID";
             cmd.Parameters.AddWithValue("@selectVolunteerID", volunteerid);
             //Open a database connection
             conn.Open();

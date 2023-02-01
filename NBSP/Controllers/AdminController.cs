@@ -152,7 +152,7 @@ namespace NBSP.Controllers
         public ActionResult Delete(Volunteer volunteer)
         {
             // Delete the staff record from database
-            volunteerContext.Delete(Convert.ToString(volunteer.VolunteerID));
+            volunteerContext.Delete(volunteer.Name);
             return RedirectToAction("ViewVolunteer");
         }
 
