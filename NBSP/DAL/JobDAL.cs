@@ -180,5 +180,33 @@ namespace NBSP.DAL
             //Return number of row of staff record updated or deleted
             return rowAffected;
         }
+        public List<Job> Search(string searchInput)
+        {
+            List<Job> jobList = new List<Job>();
+            Job job = new Job();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Job WHERE JobTitle LIKE @searchInput OR Company LIKE @searchInput";
+            cmd.Parameters.AddWithValue("@searchInput", ("%" + searchInput + "%"));
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    job.JobID = reader.GetInt32(0);
+                    job.JobName = reader.GetString(1);
+                    job.Summary = !reader.IsDBNull(2) ? reader.GetString(2) : null;
+                    job.Description = !reader.IsDBNull(3) ? reader.GetString(3) : null;
+                    job.Company = reader.GetString(4);
+                    job.Salary = reader.GetDecimal(5);
+                    job.PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+                    job.EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : null;
+                    jobList.Add(job);
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return jobList;
+        }
     }
 }

@@ -6,6 +6,18 @@
 }
 
 <h1>JobPortal</h1>
+<form asp-controller="Admin" asp-action="JobPortal" method="post">
+    <fieldset class="FormContent">
+        <div class="form-group row col" style="flex: auto; justify-content:center; flex-direction: row;">
+            <div>
+                <input class="form-control" required placeholder="Search for Job Name or Company" style="width: 400px" id="searchInput" name="searchInput" />
+            </div>
+            <div>
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </fieldset>
+</form>
 
 <table class="table">
     <thead>

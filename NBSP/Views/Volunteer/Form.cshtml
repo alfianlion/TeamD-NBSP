@@ -33,16 +33,29 @@
                 Female
                 @Html.RadioButtonFor(model => model.Gender, "F")
                 @*                <div class="form-group form-check-inline">
-                    @foreach (var item in ViewData["Gender"] as List<string>)
-                    {
-                        <label class="col-form-label">
-                            <input asp-for="Gender" type="radio" value="@item" class="form-check-input" />
-                            <span style="font-weight:normal; padding-right:20px">@item</span>
-                        </label>
-                    }
-                </div>*@
+                @foreach (var item in ViewData["Gender"] as List<string>)
+                {
+                    <label class="col-form-label">
+                        <input asp-for="Gender" type="radio" value="@item" class="form-check-input" />
+                        <span style="font-weight:normal; padding-right:20px">@item</span>
+                    </label>
+                }
+            </div>*@
             </div>
-@*        </div>
+            <div>
+                Skill Slots
+                @foreach (var item in ViewData["Availables"] as List<string>)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   name="B"
+                                   value="@item.ToString()" /> @item.ToString()
+                            </label>
+                        </div>
+                    }
+            </div>
+            @*        </div>
          <div class="form-group row">
             <label asp-for='Mon' class="form"></label>
             <div class="col-sm-9 ">
@@ -56,21 +69,21 @@
                 </div>
             </div>
         </div>*@
-        <br />
-        <div>
-            Available Slots
-            @foreach (var item in ViewData["Available"] as List<string>)
-            {
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                           name="A"
-                           value="@item.ToString()" /> @item.ToString()
-                    </label>
-                </div>
-            }
-        </div>
-@*                 <div class="form-group row">
+            <br />
+            <div>
+                Available Slots
+                @foreach (var item in ViewData["Available"] as List<string>)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   name="A"
+                                   value="@item.ToString()" /> @item.ToString()
+                            </label>
+                        </div>
+                    }
+            </div>
+            @*                 <div class="form-group row">
             <label asp-for='Tue' class="form"></label>
             <div class="col-sm-9 ">
                 <div class="form-group form-check-inline">
@@ -156,8 +169,8 @@
         </div>*@
 
 
-        <br />
-        <input type="submit" hidden="">
-        <input type="submit" value="Register">
-    </form>
+            <br />
+            <input type="submit" hidden="">
+            <input type="submit" value="Register">
+</form>
 </div>

@@ -76,7 +76,9 @@ namespace NBSP.DAL
                     Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)false,
                     Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)false,
                     Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)false,
-                    
+                    Childcare = !reader.IsDBNull(14) ? reader.GetBoolean(14) : (bool?)false,
+                    Chores = !reader.IsDBNull(15) ? reader.GetBoolean(15) : (bool?)false,
+
                 }
                 );
             }
@@ -164,7 +166,7 @@ namespace NBSP.DAL
             SqlCommand cmd = conn.CreateCommand();
 
             cmd.CommandText = @"UPDATE Volunteer SET DOB = @dob,Gender=@gender,
-                                Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun
+                                Mon=@mon,Tue=@tues,Wed=@wed,Thur=@thurs,Fri=@fri,Sat=@sat,Sun=@sun,Childcare=@child,Chores=@chores
                                 WHERE VolunteerID = @selectedVolunteerID";
 
             cmd.Parameters.AddWithValue("@dob", volunteer.DOB);
@@ -225,6 +227,22 @@ namespace NBSP.DAL
             {
                 cmd.Parameters.AddWithValue("@sun", volunteer.Sun);
             }
+            if (volunteer.Childcare == null)
+            {
+                cmd.Parameters.AddWithValue("@child", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@child", volunteer.Childcare);
+            }
+            if (volunteer.Chores == null)
+            {
+                cmd.Parameters.AddWithValue("@chores", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@chores", volunteer.Chores);
+            }
             cmd.Parameters.AddWithValue("@selectedVolunteerID", id);
 
             conn.Open();
@@ -267,6 +285,17 @@ namespace NBSP.DAL
                 }
 
             }
+            foreach(string a in v.B)
+            {
+                if (a == "Childcare")
+                {
+                    v.Childcare = true;
+                }
+                if (a == "Chores")
+                {
+                    v.Chores = true;
+                }
+            }
             return v;
         }
         public Volunteer GetVolunteerDetail(string volunteerID)
@@ -297,6 +326,8 @@ namespace NBSP.DAL
                     volunteer.Fri = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
                     volunteer.Sat = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
                     volunteer.Sun = !reader.IsDBNull(7) ? reader.GetBoolean(7) : false;
+                    volunteer.Childcare = !reader.IsDBNull(8) ? reader.GetBoolean(8) : false;
+                    volunteer.Chores = !reader.IsDBNull(8) ? reader.GetBoolean(8) : false;
                 }
             }
             reader.Close();

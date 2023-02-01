@@ -43,6 +43,22 @@ namespace NBSP.Controllers
             List<Job> jobList = jobContext.GetAllJob();
             return View(jobList);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JobPortal(IFormCollection formData)
+        {
+            ViewData["ShowResult"] = true;
+            List<Job> jobList = jobContext.Search(formData["searchInput"].ToString());
+            if (jobList.Count > 0)
+            {
+                ViewData["ResultMessage"] = "";
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Job Does Not Exist";
+            }
+            return View(jobList);
+        }
         public ActionResult ViewJob(int id)
         {
             Job job = jobContext.GetDetail(id);

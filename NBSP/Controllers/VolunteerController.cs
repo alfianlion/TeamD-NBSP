@@ -16,7 +16,8 @@ namespace NBSP.Controllers
         private JobDAL jobContext = new JobDAL();
         private List<string> genderList = new List<string> { "M", "F" };
         private List<string> aList = new List<string> { "Mon", "Tue","Wed", "Thur","Fri", "Sat", "Sun"};
-        
+        private List<string> bList = new List<string> { "Childcare", "Chores" };
+
         // GET: VolunteerController
         public ActionResult Index()
         {
@@ -55,6 +56,7 @@ namespace NBSP.Controllers
         {
             ViewData["Gender"] = genderList;
             ViewData["Available"] = aList;
+            ViewData["Availables"] = bList;
             string name = HttpContext.Session.GetString("LoginID");
             Volunteer volunteer = volunteerContext.GetVolunteerDetail(name);
             HttpContext.Session.SetInt32("VolunteerID", volunteer.VolunteerID);
@@ -158,6 +160,22 @@ namespace NBSP.Controllers
         public ActionResult JobPortal()
         {
             List<Job> jobList = jobContext.GetAllJob();
+            return View(jobList);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JobPortal(IFormCollection formData)
+        {
+            ViewData["ShowResult"] = true;
+            List<Job> jobList = jobContext.Search(formData["searchInput"].ToString());
+            if (jobList.Count > 0)
+            {
+                ViewData["ResultMessage"] = "";
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Job Does Not Exist";
+            }
             return View(jobList);
         }
         public ActionResult ViewJob(int id)

@@ -40,6 +40,7 @@ namespace NBSP.Models
         public string? Gender { get; set; }
 
         public List<string> A { get; set; }
+        public List<string> B { get; set; }
 
         [Display(Name = "Monday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)]
@@ -68,5 +69,11 @@ namespace NBSP.Models
         [Display(Name = "Sunday Avaliability")] 
         [RegularExpression(@"[0-1]")] [StringLength(1)] 
         public bool? Sun { get; set; }
+
+        [Display(Name = "ChildCare")]
+        public bool? Childcare { get; set; }
+        [Display(Name = "Chores")]
+        public bool? Chores { get; set; }
+
     }
 }
