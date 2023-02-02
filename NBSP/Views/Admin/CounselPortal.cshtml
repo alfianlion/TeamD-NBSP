@@ -1,7 +1,7 @@
 ﻿@model NBSP.Models.Member
 
 @{
-    ViewData["Title"] = "EducationPortal";
+    ViewData["Title"] = "CounselPortal";
     Layout = "~/Views/Shared/_LayoutAdminMenu.cshtml";
 }
 <head>
@@ -28,11 +28,34 @@
         </p>
     </div>
     <div class="info-box">
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        <br /><h1>
+            Summary
+        </h1>
+        <p>
+            This page allows you to get more information on counselling and helps to raise awareness of mental health issues as well as removing the social stigma and prejudice against people with
+            mental health issues.
+        </p>
+        <h2>
+            What do they do?
+        </h2>
+        <p>
+            Silver ribbon helps to combat against the social stigma against people with mental health disorders, as well as facilitate integration of people with these issues within the society
+            through innovative means of promoting mental health literacy.
+        </p>
+        <h2>
+            Why should I go to them?
+        </h2>
+        <p>
+            Silver ribbon has earned many achievements throughout the years, such as the President's Volunteerism & Philanthropy Awards in 2022, The Straits Times Singaporean of The Year in 2021,
+            Charity Transparency Award in 2019, and many more. These are awards that they have won by getting the recognition of many people as they our outstanding in their job of helping to combat
+            against the social stigma against people with mental health disorders. In addition, they also organise mental health events regularly and commemorate World Mental Health Day annually,
+            working together with local & overseas mental health organisations, consumers, caregivers, corporates, governments agencies, grassroots organisations, religious groups, school
+            institutions, social service agencies, and media to reach out to the community of all age groups through innovative means.
+        </p>
+        <br />
+        <p><a href="https://www.silverribbonsingapore.com/index.html" target="_blank">Click here </a>for more information about Silver Ribbon </p>
     </div>
-    <a href="https://www.silverribbonsingapore.com/index.html" target="_blank"><button type="button">Click</button></a>
 </body>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

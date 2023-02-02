@@ -5,41 +5,40 @@
     Layout = "~/Views/Shared/_LayoutMemberMenu.cshtml";
 }
 
-<h1>ViewJob</h1>
+<div class="container">
+    <div class="border-box">
+        <div class="form-group">
+            <label asp-for="JobName">Job Name: </label>
+            @if (@Html.Display("JobName") is null)
+            {
+                <span>No Title</span>
+            }
+            else
+            {
+                @Html.Display("JobName")
+            }
 
-<p>
-    JobDetails
-</p>
-<fieldset class="FormContent">
-    <div class="form-group row">
-        <label asp-for="JobName" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
-            @Html.Display("Name")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Description" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="Description">Description: </label>
             @Html.Display("Description")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Salary" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="Salary">Salary: </label>
             @Html.Display("Salary")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="PhoneNo" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="PhoneNo">Phone Number: </label>
             @Html.Display("PhoneNo")
         </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="EmailAddr" class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9 form-control-plaintext">
+        <div class="form-group">
+            <label asp-for="EmailAddr">Email Address: </label>
             @Html.Display("EmailAddr")
         </div>
+        <div class="form-group">
+            <a asp-action="JobPortal">Back to Job Portal</a>
+        </div>
+
     </div>
-</fieldset>
+</div>
 

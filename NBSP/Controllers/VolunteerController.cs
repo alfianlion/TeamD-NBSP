@@ -14,6 +14,7 @@ namespace NBSP.Controllers
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
         private JobDAL jobContext = new JobDAL();
+        private DonationDAL donationContext = new DonationDAL();
         private List<string> genderList = new List<string> { "M", "F" };
         private List<string> aList = new List<string> { "Mon", "Tue","Wed", "Thur","Fri", "Sat", "Sun"};
         private List<string> bList = new List<string> { "Childcare", "Chores" };
@@ -183,6 +184,28 @@ namespace NBSP.Controllers
             Job job = jobContext.GetDetail(id);
             //Customer customerCheck = CustomerDAL.GetDetails(memberID, password)
             return View(job);
+        }
+
+        public IActionResult AddDonation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddDonation(Donation donation)
+        {
+            ViewData["ShowResult"] = true;
+            if (ModelState.IsValid)
+            {
+                ViewData["ResultMessage"] = "Donation Recieved";
+                donationContext.Add(donation);
+                ModelState.Clear();
+                return View("ThankYou");
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Donation Failed";
+                return View();
+            }
         }
     }
 }

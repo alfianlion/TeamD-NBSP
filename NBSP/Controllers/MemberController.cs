@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace NBSP.Controllers
 {
     public class MemberController : Controller
@@ -15,6 +16,8 @@ namespace NBSP.Controllers
         private MemberDAL memberContext = new MemberDAL();
         private VolunteerDAL volunteerContext = new VolunteerDAL();
         private JobDAL jobContext = new JobDAL();
+        private DonationDAL donationContext = new DonationDAL();
+      
         // GET: MemberController
         public ActionResult Index()
         {
@@ -133,6 +136,28 @@ namespace NBSP.Controllers
             }
             catch
             {
+                return View();
+            }
+        }
+
+        public IActionResult AddDonation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddDonation(Donation donation)
+        {
+            ViewData["ShowResult"] = true;
+            if (ModelState.IsValid)
+            {
+                ViewData["ResultMessage"] = "Donation Recieved";
+                donationContext.Add(donation);
+                ModelState.Clear();
+                return View("ThankYou1");
+            }
+            else
+            {
+                ViewData["ResultMessage"] = "Donation Failed";
                 return View();
             }
         }

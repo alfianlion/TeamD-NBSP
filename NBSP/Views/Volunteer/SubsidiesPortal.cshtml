@@ -1,7 +1,7 @@
 ﻿@model NBSP.Models.Volunteer
 
 @{
-    ViewData["Title"] = "EducationPortal";
+    ViewData["Title"] = "SubsidiesPortal";
     Layout = "~/Views/Shared/_LayoutMemberMenu.cshtml";
 }
 <head>
@@ -28,11 +28,29 @@
         </p>
     </div>
     <div class="info-box">
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        <br /><h1>Summary</h1>
+        <p>
+            This page is a platform that helps give Single Parents information on subsidies to help relief their burden.
+        </p><br />
+        <h2>
+            What subsidies are available?
+        </h2>
+        <p>
+            In 2017, the Ministry of Social and Family Development extended the Government-Paid Maternity Leave to single unwed mothers to 16 weeks. Both unwed and wedded working parents are also
+            entitled to 6 days of paid Childcare Leave per year for children aged 7 and below, or 2 days for children aged 7 to 12 years. This will help relief the burden on Single Mothers as the
+            extended Maternity Leave will help them to not worry about not their financials while taking care of their newborn child. In addition, having more paid Childcare Leave a year makes it
+            so that when a Single Parents misses a day of work to take care of their children, their salary will not be cut because of it.
+        </p><br />
+        <p>
+            Furthermore, Single Parents can also look for Family Service Centres (FSCs) to address family-related and/or social-emotional needs, and work with other agencies if they require
+            additional support services, such as employment assistance or childcare services. Single Parents can also approach Social Service Officers (SSOs) if they require support with their
+            basic living expenses. If they meet the criteria, SSOs will then refer them to other Government agencies and community partners for their help.
+        </p><br />
+        <p>
+            <a href="https://www.msf.gov.sg/media-room/Pages/Tax-Rebates-and-Baby-Bonuses-to-Single-Parents.aspx" target="_blank">Click here </a>for more information regarding subsidies for Single Parents
+        </p>
     </div>
-    <a href="https://www.msf.gov.sg/media-room/Pages/Tax-Rebates-and-Baby-Bonuses-to-Single-Parents.aspx" target="_blank"><button type="button">Click</button></a>
 </body>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

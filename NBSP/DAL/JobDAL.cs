@@ -155,7 +155,7 @@ namespace NBSP.DAL
             //A connection to database must be opened before any operations made.
             conn.Open();
             //ExecuteScalar is used to retrieve the auto-generated
-            //StaffID after executing the INSERT SQL statement
+            //JobID after executing the INSERT SQL statement
             job.JobID = (int)cmd.ExecuteScalar();
             //A connection should be closed after operations.
             conn.Close();
@@ -168,7 +168,7 @@ namespace NBSP.DAL
             //to delete a staff record specified by a Staff ID
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"DELETE FROM Job
- WHERE JobID = @selectID";
+                                WHERE JobID = @selectID";
             cmd.Parameters.AddWithValue("@selectID", jobid);
             //Open a database connection
             conn.Open();
