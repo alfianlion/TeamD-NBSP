@@ -59,6 +59,7 @@
     </dl>
     
     <form asp-action="DeleteJob">
+        <input asp-for="JobID" hidden />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="ViewJob">Back to List</a>
     </form>

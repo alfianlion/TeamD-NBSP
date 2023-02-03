@@ -65,12 +65,12 @@ namespace NBSP.DAL
                     JobID = reader.GetInt32(0),
                     JobName = reader.GetString(1),
                     Summary = !reader.IsDBNull(2) ? reader.GetString(2) : "Unknown",
-                 Description= !reader.IsDBNull(3) ? reader.GetString(3) : "Unknown",
-                Company = reader.GetString(4),
+                    Description = !reader.IsDBNull(3) ? reader.GetString(3) : "Unknown",
+                    Company = reader.GetString(4),
                     Salary = reader.GetDecimal(5),
                     PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : "Unknown",
-                EmailAddr= !reader.IsDBNull(7) ? reader.GetString(7) : "Unknown",
-            }
+                    EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : "Unknown",
+                }
                 );
             }
             //Close DataReader
@@ -134,7 +134,7 @@ namespace NBSP.DAL
             {
                 cmd.Parameters.AddWithValue("@desc", job.Description);
             }
-            cmd.Parameters.AddWithValue("@company",job.Company);
+            cmd.Parameters.AddWithValue("@company", job.Company);
             cmd.Parameters.AddWithValue("@money", job.Salary);
             if (job.PhoneNo == null)
             {
@@ -180,33 +180,88 @@ namespace NBSP.DAL
             //Return number of row of staff record updated or deleted
             return rowAffected;
         }
+        //    public List<Job> Search(string searchInput)
+        //    {
+        //        List<Job> jobList = new List<Job>();
+        //        Job job = new Job();
+        //        SqlCommand cmd = conn.CreateCommand();
+        //        cmd.CommandText = @"SELECT * FROM Job WHERE JobTitle LIKE @searchInput OR Company LIKE @searchInput";
+        //        cmd.Parameters.AddWithValue("@searchInput", ("%" + searchInput + "%"));
+        //        conn.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
+        //        if (reader.HasRows)
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                job.JobID = reader.GetInt32(0);
+        //                job.JobName = reader.GetString(1);
+        //                job.Summary = !reader.IsDBNull(2) ? reader.GetString(2) : null;
+        //                job.Description = !reader.IsDBNull(3) ? reader.GetString(3) : null;
+        //                job.Company = reader.GetString(4);
+        //                job.Salary = reader.GetDecimal(5);
+        //                job.PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+        //                job.EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : null;
+        //                jobList.Add(job);
+        //            }
+        //        }
+        //        reader.Close();
+        //        conn.Close();
+        //        return jobList;
+        //    }
+        //}
         public List<Job> Search(string searchInput)
         {
-            List<Job> jobList = new List<Job>();
-            Job job = new Job();
+            //Create a SqlCommand object from connection object
             SqlCommand cmd = conn.CreateCommand();
+            //Specify the SELECT SQL statement 
             cmd.CommandText = @"SELECT * FROM Job WHERE JobTitle LIKE @searchInput OR Company LIKE @searchInput";
             cmd.Parameters.AddWithValue("@searchInput", ("%" + searchInput + "%"));
+            //Open a database connection
             conn.Open();
+            //Execute the SELECT SQL through a DataReader
             SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            //Read all records until the end, save data into a staff list
+            List<Job> jList = new List<Job>();
+            Job job = new Job();
+            while (reader.Read())
             {
-                while (reader.Read())
+                DateTime nulldatetime = new DateTime(0001, 01, 01);
+                jList.Add(
+                new Job
                 {
-                    job.JobID = reader.GetInt32(0);
-                    job.JobName = reader.GetString(1);
-                    job.Summary = !reader.IsDBNull(2) ? reader.GetString(2) : null;
-                    job.Description = !reader.IsDBNull(3) ? reader.GetString(3) : null;
-                    job.Company = reader.GetString(4);
-                    job.Salary = reader.GetDecimal(5);
-                    job.PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : null;
-                    job.EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : null;
-                    jobList.Add(job);
+                /*
+                VolunteerID = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                EmailAddr = reader.GetString(2),
+                ContactNo = reader.GetInt32(3),
+                Pwd = reader.GetString(4),
+                DOB = !reader.IsDBNull(5) ? reader.GetDateTime(5) : (DateTime?)null,
+                Gender = !reader.IsDBNull(6) ? reader.GetChar(6) : (char?)null,
+                Mon = !reader.IsDBNull(7) ? reader.GetBoolean(7) : (bool?)null,
+                Tue = !reader.IsDBNull(8) ? reader.GetBoolean(8) : (bool?)null,
+                Wed = !reader.IsDBNull(9) ? reader.GetBoolean(9) : (bool?)null,
+                Thur = !reader.IsDBNull(10) ? reader.GetBoolean(10) : (bool?)null,
+                Fri = !reader.IsDBNull(11) ? reader.GetBoolean(11) : (bool?)null,
+                Sat = !reader.IsDBNull(12) ? reader.GetBoolean(12) : (bool?)null,
+                Sun = !reader.IsDBNull(13) ? reader.GetBoolean(13) : (bool?)null,
+                */
+
+                    JobID = reader.GetInt32(0),
+                    JobName = reader.GetString(1),
+                    Summary = !reader.IsDBNull(2) ? reader.GetString(2) : "Unknown",
+                    Description = !reader.IsDBNull(3) ? reader.GetString(3) : "Unknown",
+                    Company = reader.GetString(4),
+                    Salary = reader.GetDecimal(5),
+                    PhoneNo = !reader.IsDBNull(6) ? reader.GetString(6) : "Unknown",
+                    EmailAddr = !reader.IsDBNull(7) ? reader.GetString(7) : "Unknown",
                 }
+                );
             }
+            //Close DataReader
             reader.Close();
+            //Close the database connection
             conn.Close();
-            return jobList;
+            return jList;
         }
     }
 }
